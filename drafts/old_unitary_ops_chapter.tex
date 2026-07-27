@@ -52,7 +52,7 @@ Z drugiej strony
         A\Big(\sum_{k=1}^n \inner{x}{\mathbf{e}_k}\mathbf{e}_k\Big)
     }{y} = \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\inner{A\mathbf{e}_k}{y} = \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\overline{\inner{y}{A\mathbf{e}_k}},
 \end{equation}
-gdzie ostatnia równość wynika z przemienności iloczynu skalarnego w przestrzeni unitarnej. 
+gdzie ostatnia równość wynika z symetrii hermitowskiej iloczynu skalarnego w przestrzeni unitarnej.
 Prawe strony obu równości są identyczne, więc $\inner{Ax}{y} = \inner{x}{A^*y}$ dla wszystkich $x,y \in V$, co dowodzi istnienia $A^*$.
 
 \textbf{Jednoznaczność.} Załóżmy, że operatory $B_1, B_2$ oba spełniają warunek \eqref{eq:def_conjugated_operator}, tzn. $\inner{Ax}{y} = \inner{x}{B_1y} = \inner{x}{B_2y}$ dla wszystkich $x,y \in V$. Wtedy dla dowolnych $x, y \in V$:
@@ -90,7 +90,7 @@ Ponieważ $x \in V$ było dowolne, a iloczyn skalarny w $V$ jest niezdegenerowan
     \begin{equation}\label{eq:local_proof_1}
         a^*_{ik} = \inner{A^*\mathbf{e}_k}{\mathbf{e}_i}
     \end{equation}
-    Z definicji operatora transponowanego \eqref{eq:def_conjugated_operator}:
+    Z definicji operatora sprzężonego \eqref{eq:def_conjugated_operator}:
     $$\inner{A^*\mathbf{e}_k}{\mathbf{e}_i} = \inner{\mathbf{e}_k}{A\mathbf{e}_i}$$
     \begin{equation}\label{eq:local_proof_2}
         \inner{A^*\mathbf{e}_k}{\mathbf{e}_i} = \overline{\inner{A\mathbf{e}_i}{\mathbf{e}_k}}
@@ -116,16 +116,16 @@ Dla (2):
 $(A + B)^* = (a_{ik} + b_{ik})^* = \bar{a}_{ki} + \bar{b}_{ki} = a^*_{ik} + b^*_{ik} = A^* + B^*$, gdzie $i, k \in \N$
 
 Dla (3):
-$(\lambda A)^* = (\lambda a^*_{ik}) = \bar{\lambda}(a^*_{ik}) = \bar{\lambda}(A^*)$, gdzie $\lambda \in \C, i, k \in \N$
+$(\lambda A)^* = (\lambda a_{ik})^* = \overline{(\lambda a_{ki})} = \bar{\lambda}(a^*_{ik}) = \bar{\lambda}(A^*)$, gdzie $\lambda \in \C, i, k \in \N$
 
 Dla (4):
 Zakładamy, że możemy wymnożyć macierze $A$ i $B$, a więc liczba kolumn macierzy $A_{(p \times n)}$ zgadza się z liczbą wierszy macierzy $B_{(n \times m)}$. Z tego wynika, że liczba wierszy macierzy $A^*_{(n \times p)}$, zgadza się z liczbą kolumn macierzy $B^*_{(m \times n)}$, gdzie $n, p, m \in \N$.
-Element na pozycji $(i, k)$ macierzy $(AB)$ z defnicji mnożenia dany jest wzorem: 
+Element na pozycji $(i, k)$ macierzy $(AB)$ z definicji mnożenia dany jest wzorem: 
 
 $$(AB)_{(i, k)} = \sum_{r=1}^{n}{a_{ir}b_{rk}}$$
 Element na pozycji $(i, k)$ macierzy $(AB)^*$ dany jest wzorem:
 $$(AB)^*_{(i, k)} = \overline{(AB)}_{(k, i)} = \sum_{r=1}^{n}{\bar{a}_{kr}\bar{b}_{ri}}$$
-Dla macierzy $(B*A^*)$ element $(i, k)$ z definicji mnożenia macierzy jest dany wzorem:
+Dla macierzy $(B^*A^*)$ element $(i, k)$ z definicji mnożenia macierzy jest dany wzorem:
 $$(B^*A^*)_{(i, k)} = \sum_{r=1}^{n}{b^*_{ir}a^*_{rk}} = \sum_{r=1}^{n}{\bar{b}_{ri}\bar{a}_{kr}} = \sum_{r=1}^{n}{\bar{a}_{kr}\bar{b}_{ri}}$$
 Z tego wynika, że $(B^*A^*)_{(i, k)} = (AB)^*_{(i, k)}$, więc $(AB)^* = B^*A^*$.
 \end{proof}
@@ -168,19 +168,19 @@ $$\inner{Ux}{Uy} = \inner{x}{U^*Uy} = \inner{x}{y}$$
 Z tego wynika:
 \begin{equation}
     U^*U = I,
-\end{equation} gdzie $I$ macierz jednostkowa. 
+\end{equation} gdzie $I$ to macierz jednostkowa. 
 
 \begin{theorem}
     Operator unitarny $U$ w przestrzeni unitarnej $V$ z bazą ortonormalną ma macierz unitarną.
 \end{theorem}
 \begin{proof}
     Załóżmy, że $U$ jest operatorem unitarnym w przestrzeni unitarnej z bazą ortonormalną $\base{e}$, i odpowiednią mu macierzą, oznaczymy ją jako $A$.
-    Ponieważ $\base{e}$ jest bazą ortonormalną, to $U(\mathbf{e}_1), \ldots, O(\mathbf{e}_n)$ też jest bazą ortonormalną, dlatego że $O$ zachowuje iloczyn skalarny tych wektorów. Te wektory traktowane jako wektory kolumnowe tworzą macierz unitarną, tworząc jednocześnie macierz $A$.
+    Ponieważ $\base{e}$ jest bazą ortonormalną, to $U(\mathbf{e}_1), \ldots, U(\mathbf{e}_n)$ też jest bazą ortonormalną, dlatego że $U$ zachowuje iloczyn skalarny tych wektorów. Te wektory traktowane jako wektory kolumnowe tworzą macierz unitarną, tworząc jednocześnie macierz $A$.
 
     Na odwrót, załóżmy, że macierz $A$ jest unitarna. Niech $x, y \in V$. Wówczas, korzystając z tw. \ref{theorem:properties_of_conjugated_operator} (4 własność):
-    $$\inner{U(x)}{U(y)} = \inner{Ax}{Ay} = (Ax)^*Ay = x^*A^*Ay = x^*y = \inner{x}{y},$$
+    $$\inner{U(x)}{U(y)} = \inner{Ax}{Ay} = (Ay)^*(Ax) = x^*A^*Ay = x^*y = \inner{x}{y},$$
     a to oznacza, że $U$ jest operatorem unitarnym.
 \end{proof}
 
 Operatory hermitowskie oraz unitarne są szczególnymi przypadkami operatora normalnego.
-W przestrzeni euklidesowej tym operatoram odpowaidają operatory symetryczne oraz ortogonalne. Rozpatrzymy to w następnym podrozdziale.
+W przestrzeni euklidesowej tym operatorom odpowiadają operatory symetryczne oraz ortogonalne. Rozpatrzymy to w następnym podrozdziale.
