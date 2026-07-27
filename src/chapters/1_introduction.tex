@@ -1,0 +1,319 @@
+\chapter{Formy normalne macierzy rzeczywistych}
+
+Głównym celem pracy jest omówienie form normalnych macierzy zespolonych symetrycznych, antysymetrycznych oraz ortogonalnych.
+Dlatego najpierw musimy omówić odpowiednie przypadki rzeczywiste macierzy symetrycznych, antysymetrycznych oraz ortogonalnych.
+Formą normalną będziemy nazywać postać kanoniczną albo inaczej postać diagonalną macierzy lub najbardziej podobną postać do postaci diagonalnej.  
+W tym rozdziale będą przedstawione podstawowe pojęcia oraz formy normalne dla macierzy rzeczywistych symetrycznych, antysymetrycznych oraz ortogonalnych.
+
+\section{Podstawowe pojęcia}
+
+Niech $V$ będzie przestrzenią liniową nad ciałem $\K$ liczb zespolonych lub rzeczywistych ($\K$ = $\C$ lub $\K$ = $\R$). Przekształcenie $\inner{\cdot}{\cdot} \colon V \times V \to \K$ przyporządkowujące parze wektorów ($x$, $y$) $\in$ $V \times V$ liczbę z $\K$ nazywamy \textbf{iloczynem skalarnym}, jeżeli dla dowolnych wektorów $x$, $y$, $z$ $\in$ $V$ spełnione są następujące warunki:
+
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+    \item $\inner{x}{y}$ = $\overline{\inner{y}{x}}$, gdzie $\overline{\inner{y}{x}}$ jest sprzężeniem zespolonym liczby $\inner{y}{x}$
+    \item $\inner{ax}{y}$ = $a\inner{x}{y}$, gdzie $a \in \K$
+    \item $\inner{x + y}{z}$ = $\inner{x}{z} + \inner{y}{z}$
+    \item $\inner{x}{x} \geq 0$ oraz $\inner{x}{x} = 0 \iff x = 0$ (warunek o dodatniej określoności)
+\end{enumerate}
+Z (1), (2), (3) wynika, że:
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*), start=5]
+    \item $\inner{x}{ay}$ = $\overline{\inner{ay}{x}}$ = $\overline{a}\inner{x}{y}$, gdzie $a \in \K$
+    \item $\inner{x}{y + z}$ = $\inner{x}{z} + \inner{x}{y}$
+\end{enumerate}
+
+\begin{definition}
+Przestrzeń liniową $V$ nad ciałem liczb $\K$ wraz z wyróżnionym iloczynem skalarnym $\inner{\cdot}{\cdot}$, tj. parę ($V$, $\inner{\cdot}{\cdot}$) nazywamy $\textbf{przestrzenią unitarną}$.
+W przypadku gdy $\K = \R$, przestrzeń unitarną nazywamy \textbf{przestrzenią euklidesową}.
+\end{definition}
+
+Dalej będziemy rozpatrywać tylko przestrzenie o skończonym wymiarze.
+
+\begin{definition}
+    \textbf{Normą wektora} $x \in V$ nazywamy liczbę $\norm{x} = \sqrt{\inner{x}{x}}$ 
+\end{definition}
+
+Niech $V$ będzie $n$-wymiarową przestrzenią unitarną z dowolną bazą $\base{e}$. Niech \textbf{x}, \textbf{y} będą dowolnymi wektorami z $V$, gdzie $x_i$, $y_i$ są współrzędnymi tych wektorów:
+
+\begin{center}
+    $$\textbf{x} = \sum_{i=1}^{n}{x_{i}e_{i}} \quad \textbf{y} = \sum_{i=1}^{n}{y_{i}e_{i}}$$
+\end{center}
+Wtedy z (2), (3), (5), (6):
+\begin{center}
+    $$\inner{\textbf{x}}{\textbf{y}} = \inner{
+        \sum_{i=1}^{n}{x_{i} \textbf{e}_i}
+    }{
+        \sum_{k=1}^{n}{y_{k} \textbf{e}_k}
+    } = \sum_{i=1}^{n}{\sum_{k=1}^{n}{x_{i} \bar{y}_{k} \inner{\textbf{e}_{i}}{\textbf{e}_{k}}}}$$
+\end{center}
+Niech
+\begin{equation}\label{eq:def_h}
+    h_{ik} = \inner{\textbf{e}_i}{\textbf{e}_k}, \text{ dla }k,i = 1, \ldots, n 
+\end{equation}
+Wtedy: 
+\begin{equation}\label{eq:std_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{i,k=1}^{n}{h_{ik} x_{i} \bar{y}_{k}}
+\end{equation}
+W szczególności:
+
+\begin{equation}
+    \inner{\textbf{x}}{\textbf{x}} = \sum_{i,k=1}^{n}{h_{ik} x_{i} \bar{x}_{k}}
+\end{equation}
+gdzie z \eqref{eq:def_h} oraz własności (1), wynika, że $h_{ik} = \bar{h}_{ki}$.
+
+% TODO: Potrzebujemy to dodać formę hermitowską?
+
+W ten sposób zdefiniowaliśmy iloczyn skalarny dla bazy $\textbf{e}_1, \ldots, \textbf{e}_n$. Ponadto jeżeli baza $\textbf{e}_1, \ldots, \textbf{e}_n$ jest ortonormalna, to znaczy taka, że każdy wektor bazy jest ortogonalny do pozostałych oraz ma normę jeden:
+\begin{equation}\label{eq:def_ortonormal_base}
+    \inner{\textbf{e}_i}{\textbf{e}_k} = \delta_{ik} = \begin{cases}
+    0, \text{ dla } i \neq k \\
+    1, \text{ dla } i = k
+\end{cases}
+\end{equation}
+Wtedy dla bazy ortonormalnej iloczyn skalarny przyjmuje postać, którą będziemy nazywać \textbf{standardową}:
+\begin{equation}\label{eq:std_normal_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{i=1}^{n}{x_{i} \bar{y}_{i}}
+\end{equation}
+\begin{equation}
+    \inner{\textbf{x}}{\textbf{x}} = \sum_{i=1}^{n}{x_{i} \bar{x}_{i}} = \sum_{i=1}^{n}{|x_{i}|^2}
+\end{equation}
+Dla wektorów \textbf{x}, \textbf{y} ze współrzędnymi $x_i$ i $y_i$ dla $i = 1, \ldots, n$ w bazie $\textbf{e}_1, \ldots, \textbf{e}_n$
+przestrzeni euklidesowej iloczyn skalarny redukuje się do:
+\begin{equation}\label{eq:std_euclid_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{k,i=1}^{n}{h_{ik} x_{i} {y}_{k}}
+\end{equation}
+Dla bazy ortonormalnej:
+\begin{equation}\label{eq:std_euclid_normal_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{i=1}^{n}{x_{i} {y}_{i}}
+\end{equation}
+\begin{equation}
+    \inner{\textbf{x}}{\textbf{x}} = \sum_{i=1}^{n}{x_{i}^2}
+\end{equation}
+
+\
+
+\begin{definition}
+Odwzorowanie $A \colon X \to Y $, gdzie $X$ i $Y$ są przestrzeniami liniowymi nad ciałem liczb $\K$, nazywa się \textbf{operatorem liniowym} jeżeli spełnia następujące warunki dla dowolnych dwóch wektorów $x, y \in X$ oraz dowolnego skalara $a \in \K$:
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+    \item $A(x + y) = A(x) + A(y)$ (zachowuje dodawanie wektorów)
+    \item $A(ax) = aA(x)$ (zachowuje mnożenie przez skalar)
+\end{enumerate}
+\end{definition}
+
+Jeśli przestrzenie liniowe $X$ i $Y$ mają skończony wymiar $\dim X = n$, $\dim Y = m$, oraz ustalimy w $X$ bazę $\mathbf{e}_1, \ldots, \mathbf{e}_n$, a w $Y$ bazę $\mathbf{g}_1, \ldots, \mathbf{g}_m$, to odwzorowaniu liniowemu $A$ odpowiada macierz $m \times n$ w następującym sensie: jeżeli wektorowi $\mathbf{x} = \sum_{i=1}^{n} x_i \mathbf{e}_i \in X$ operator $A$ przyporządkowuje wektor $\mathbf{y} = \sum_{i=1}^{m} y_i \mathbf{g}_i \in Y$, to współrzędne tych wektorów są związane wzorem $\mathbf{y} = A\mathbf{x}.$
+
+Uwaga: W dalszej części pracy, ustaliwszy bazę w przestrzeni $X$ i $Y$, będziemy utożsamiać operator liniowy $A \colon X \to Y$ z jego macierzą $A$ w tej bazie, pisząc po prostu $A$ zarówno dla operatora, jak i dla odpowiadającej mu macierzy.
+
+\section{Liniowe operatory w przestrzeni euklidesowej}
+
+Rozpatrzmy $n$-wymiarową przestrzeń euklidesową $V$. Niech będzie dany dowolny operator liniowy $A$ w tej przestrzeni.
+
+\begin{definition}
+    Operator liniowy $A^T$ nazywa się \textbf{operatorem transponowanym do operatora} $A$, jeśli dla dowolnych dwóch wektorów $x, y \in V$:
+    \begin{equation}\label{eq:def_transposed_operator}
+        \inner{Ax}{y} = \inner{x}{A^Ty}
+    \end{equation}
+\end{definition}
+\begin{lemma}\label{lemma:existing_of_ortonormal_base}
+W każdej skończonie wymiarowej przestrzeni unitarnej $V$ można wybrać bazę ortonormalną.
+\end{lemma}   
+\begin{proof}
+    Dowolną bazę $V$ można zortogonalizować metodą Grama–Schmidta \cite[s. 140--142]{mostowski1977}, a następnie znormalizować otrzymane wektory, co daje bazę ortonormalną.
+\end{proof}
+
+\begin{theorem}
+Dla każdego liniowego operatora $A$ w przestrzeni euklidesowej $V$ zawsze istnieje operator transponowany $A^T$ i to tylko jeden.
+\end{theorem}
+\begin{proof}
+\textbf{Istnienie.} Niech $\mathbf{e}_1, \ldots, \mathbf{e}_n$ jest bazą ortonormalną przestrzeni $V$. Dowolny wektor $y \in V$ w bazie ortonormalnej da się zapisać w postaci:
+$$ y = \sum_{k=1}^{n}{\inner{y}{\mathbf{e}_k}\mathbf{e}_k} $$
+    Wtedy dla wektora $y$ i szukanego operatora $A^T$:
+\begin{equation}
+        A^Ty = \sum_{k=1}^{n}{\inner{A^Ty}{\mathbf{e}_k}\mathbf{e}_k}
+\end{equation}
+    Na mocy Lematu \ref{lemma:existing_of_ortonormal_base}:
+\begin{equation}
+        A^Ty = \sum_{k=1}^{n}{\inner{y}{A\mathbf{e}_k}\mathbf{e}_k}
+\end{equation}
+
+Operator ten jest liniowy, ponieważ iloczyn skalarny jest liniowy.
+Pokażemy, że tak zdefiniowany operator spełnia warunek \eqref{eq:def_transposed_operator}. Niech $x, y \in V$ będą dowolne. Zapiszmy $x$ w bazie ortonormalnej: $x = \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\mathbf{e}_k$. Wówczas
+\begin{equation}
+    \inner{x}{A^Ty} = \Big\langle \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\mathbf{e}_k,\ \sum_{i=1}^n \inner{y}{A\mathbf{e}_i}\mathbf{e}_i \Big\rangle = \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\inner{y}{A\mathbf{e}_k},
+\end{equation}
+gdzie skorzystaliśmy z ortonormalności $\base{e}$. 
+Z drugiej strony
+\begin{equation}
+    \inner{Ax}{y} = \inner{
+        A\Big(\sum_{k=1}^n \inner{x}{\mathbf{e}_k}\mathbf{e}_k\Big)
+    }{y} = \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\inner{A\mathbf{e}_k}{y} = \sum_{k=1}^n \inner{x}{\mathbf{e}_k}\inner{y}{A\mathbf{e}_k},
+\end{equation}
+gdzie ostatnia równość wynika z przemienności iloczynu skalarnego w przestrzeni euklidesowej. 
+Prawe strony obu równości są identyczne, więc $\inner{Ax}{y} = \inner{x}{A^Ty}$ dla wszystkich $x,y \in V$, co dowodzi istnienia $A^T$.
+
+\textbf{Jednoznaczność.} Załóżmy, że operatory $B_1, B_2$ oba spełniają warunek \eqref{eq:def_transposed_operator}, tzn. $\inner{Ax}{y} = \inner{x}{B_1y} = \inner{x}{B_2y}$ dla wszystkich $x,y \in V$. Wtedy dla dowolnych $x, y \in V$:
+\begin{equation}
+    \inner{x}{B_1y - B_2y} = 0.
+\end{equation}
+Ponieważ $x \in V$ było dowolne, a iloczyn skalarny w $V$ jest niezdegenerowany (tzn. $\inner{x}{z}=0$ dla wszystkich $x$ różnych od zera implikuje $z=0$), otrzymujemy $B_1y - B_2y = 0$ dla każdego $y \in V$, czyli $B_1 = B_2$.
+\end{proof}
+
+\begin{theorem}
+    W przestrzeni euklidesowej $V$ z bazą ortonormalną, transponowanemu operatorowi $A^T$ odpowiada macierz transponowana.
+\end{theorem}
+\begin{proof}
+    Niech $A$ będzie operatorem liniowym w przestrzeni euklidesowej $V$ z  ortonormalną bazą $\base{e}$ (Lemat \ref{lemma:existing_of_ortonormal_base}) któremu odpowiada macierz $(a_{ik})$, gdzie $i, k = 1, \ldots, n$.
+
+    Zastosujmy do dowolnego wektora $\mathbf{e}_k$ z bazy $\base{e}$ operator liniowy $A$:
+    \begin{equation}\label{eq:local_Ae_def}
+        A\mathbf{e}_k = \sum_{i=1}^{n}{a_{ik}\mathbf{e}_i} = a_{1k}\mathbf{e}_1 + \ldots + a_{ik}\mathbf{e}_i + \ldots + a_{nk}\mathbf{e}_n
+    \end{equation}
+    Pomnożymy skalarnie obie strony \eqref{eq:local_Ae_def} przez dowolny wektor bazowy $\mathbf{e}_i$, gdzie $i \in \{1, \ldots, n\}$:
+    $$\inner{A\mathbf{e}_k}{\mathbf{e}_i} = \inner{
+        a_{1k}\mathbf{e}_1 + \ldots + a_{ik}\mathbf{e}_i + \ldots + a_{nk}\mathbf{e}_n
+    }{\mathbf{e}_i}$$
+    $$\inner{A\mathbf{e}_k}{\mathbf{e}_i} = a_{1k}\inner{\mathbf{e}_1}{\mathbf{e}_i} + \ldots + a_{ik}\inner{\mathbf{e}_i}{\mathbf{e}_i} + \ldots + a_{nk}\inner{\mathbf{e}_n}{\mathbf{e}_i}$$
+    Z definicji bazy ortonormalnej \eqref{eq:def_ortonormal_base}:
+    $$\inner{A\mathbf{e}_k}{\mathbf{e}_i} = a_{1k} \times 0 + \ldots + a_{ik}\times 1 + \ldots + a_{nk} \times 0$$
+    Więc:
+    \begin{equation}\label{eq:def_ortonormal_coeffs}
+        a_{ik} = \inner{A\mathbf{e}_k}{\mathbf{e}_i}
+    \end{equation}
+    Wzór \eqref{eq:def_ortonormal_coeffs} jest wzorem na współczynniki macierzy operatora liniowego w bazie ortonormalnej.
+    %TODO: We need to split that formula and show this before theorem about existing transposed op%
+    Niech w tej samej bazie operatorowi $A^T$ odpowiada macierz $(a^T_{ik})$, gdzie $i, k = 1, \ldots, n$.
+    Wtedy ze wzoru \eqref{eq:def_ortonormal_coeffs}:
+    \begin{equation}\label{eq:local_def_a_t_el}
+        a^T_{ik} = \inner{A^T\mathbf{e}_k}{\mathbf{e}_i}
+    \end{equation}
+    Z definicji operatora transponowanego \eqref{eq:def_transposed_operator}:
+    $$\inner{A^T\mathbf{e}_k}{\mathbf{e}_i} = \inner{\mathbf{e}_k}{A\mathbf{e}_i}$$
+    \begin{equation}\label{eq:local_inner_t_eq_to_inner}
+        \inner{A^T\mathbf{e}_k}{\mathbf{e}_i} = \inner{A\mathbf{e}_i}{\mathbf{e}_k}
+    \end{equation}
+    Z \eqref{eq:def_ortonormal_coeffs}, \eqref{eq:local_def_a_t_el} oraz \eqref{eq:local_inner_t_eq_to_inner} wynika, że:
+    $$a^T_{ik} = a_{ki}, \quad (i, k = 1, \ldots, n)$$
+    A zatem operatorowi transponowanemu $A^T$ odpowiada macierz transponowana.
+\end{proof}
+
+\begin{theorem}\label{theorem:properties_of_transposed_operator}
+    Z definicji operatora transponowanego mamy następujące własności:
+    \begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+        \item $(A^T)^T = A$
+        \item $(A + B)^T = A^T + B^T$
+        \item $(\lambda A)^T = \lambda(A^T)$, gdzie $\lambda \in \R$
+        \item $(AB)^T = B^TA^T$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+Dla (1): $(A^T)^T = (a^T_{ik})^T = (a_{ki})^T = (a_{ik}) = A$, gdzie $i, k \in \N$
+
+Dla (2):
+$(A + B)^T = (a_{ik} + b_{ik})^T = a_{ki} + b_{ki} = a^T_{ik} + b^T_{ik} = A^T + B^T$, gdzie $i, k \in \N$
+
+Dla (3):
+$(\lambda A)^T = (\lambda a^T_{ik}) = \lambda(a^T_{ik}) = \lambda(A^T)$, gdzie $\lambda \in \R, i, k \in \N$
+
+Dla (4):
+Zakładamy, że możemy wymnożyć macierze $A$ i $B$, a więc liczba kolumn macierzy $A_{(p \times n)}$ zgadza się z liczbą wierszy macierzy $B_{(n \times m)}$. Z tego wynika, że liczba wierszy macierzy $A^T_{(n \times p)}$, zgadza się z liczbą kolumn macierzy $B^T_{(m \times n)}$, gdzie $n, p, m \in \N$.
+Element na pozycji $(i, k)$ macierzy $(AB)$ z defnicji mnożenia dany jest wzorem: 
+
+$$(AB)_{(i, k)} = \sum_{r=1}^{n}{a_{ir}b_{rk}}$$
+Element na pozycji $(i, k)$ macierzy $(AB)^T$ dany jest wzorem:
+$$(AB)^T_{(i, k)} = (AB)_{(k, i)} = \sum_{r=1}^{n}{a_{kr}b_{ri}}$$
+Dla macierzy $(B^TA^T)$ element $(i, k)$ z definicji mnożenia macierzy jest dany wzorem:
+$$(B^TA^T)_{(i, k)} = \sum_{r=1}^{n}{b^T_{ir}a^T_{rk}} = \sum_{r=1}^{n}{b_{ri}a_{kr}} = \sum_{r=1}^{n}{a_{kr}b_{ri}}$$
+Z tego wynika, że $(B^TA^T)_{(i, k)} = (AB)^T_{(i, k)}$, więc $(AB)^T = B^TA^T$.
+
+\end{proof}
+
+\begin{definition}\label{def:normal_operator}
+Operator liniowy $A$ nazywa się \textit{normalnym}, jeśli:
+$$AA^T = A^TA$$
+\end{definition}
+\begin{theorem}
+    Operator normalny $A$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz normalną.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{definition}\label{def:symmetric_operator}
+Operator liniowy $S$ nazywa się \textit{symetrycznym}, jeśli:
+$$S = S^T$$
+\end{definition}
+\begin{theorem}\label{theorem:sym_op_has_same_matrix}
+    Operator symetryczny $S$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz symetryczną.
+\end{theorem}
+\begin{proof}
+    Z definicji operatora symetrycznego dla dowolnych dwóch wektorów $\textbf{e}_i$, $\textbf{e}_k$ z bazy ortonormalnej $\base{e}$, gdzie $i, k \in \N$:
+    $$\inner{S\textbf{e}_i}{\textbf{e}_k} = \inner{\textbf{e}_i}{S\textbf{e}_k}$$
+    Korzystając ze wzoru \eqref{eq:def_ortonormal_coeffs} oraz przemienności iloczynu skalarnego:
+    $$ a_{ik} = \inner{S\textbf{e}_i}{\textbf{e}_k} = \inner{\textbf{e}_i}{S\textbf{e}_k} = \inner{S\textbf{e}_k}{\textbf{e}_i} = a_{ki}, $$ gdzie $i, k \in \{1, \dots, n\}$. Z tego wynika, że operatorowi symetrycznemu odpowiada macierz symetryczna.
+\end{proof}
+
+\begin{definition}\label{def:skew_symmetric_operator}
+Operator liniowy $K$ nazywa się \textit{antysymetrycznym}, jeśli:
+$$K = -K^T$$
+\end{definition}
+
+\begin{theorem}
+    Operator antysymetryczny $K$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz antysymetryczną.
+\end{theorem}
+\begin{proof}
+    Dowód jest podobny do dowodu Twierdzenia \ref{theorem:sym_op_has_same_matrix}.
+
+    Z definicji operatora antysymetrycznego dla dowolnych dwóch wektorów $\textbf{e}_i$, $\textbf{e}_k$ z bazy ortonormalnej $\base{e}$, gdzie $i, k \in \N$:
+    $$\inner{K\textbf{e}_i}{\textbf{e}_k} = \inner{\textbf{e}_i}{-K\textbf{e}_k}$$
+    Korzystając ze wzoru \eqref{eq:def_ortonormal_coeffs} oraz z jednorodności i przemienności iloczynu skalarnego:
+    $$ a_{ik} = \inner{K\textbf{e}_i}{\textbf{e}_k} = \inner{\textbf{e}_i}{-K\textbf{e}_k} = \inner{-K\textbf{e}_k}{\textbf{e}_i} = -\inner{K\textbf{e}_k}{\textbf{e}_i} = -a_{ki}, $$ gdzie $i, k \in \{1, \dots, n\}$. Z tego wynika, że operatorowi antysymetrycznemu odpowiada macierz antysymetryczna.
+\end{proof}
+
+\begin{definition}\label{def:ortogonal_operator}
+    Operator liniowy $O$ nazywa się \textit{ortogonalnym} lub inaczej \textit{izometrią liniową}, jeśli zachowuje metrykę przestrzeni, tj. jeśli dla dowolnych dwóch wektorów $x, y \in V$:
+    \begin{equation}\label{eq:def_ortogonal_operator}
+        \inner{Ox}{Oy} = \inner{x}{y}
+    \end{equation}
+\end{definition}
+Równość \eqref{eq:def_ortogonal_operator} możemy przepisać w następujący sposób na mocy \eqref{eq:def_transposed_operator}:
+$$\inner{Oa}{b} = \inner{a}{O^Tb}$$
+Podstawiając pod $a = x$, a pod $b = Oy$ otrzymujemy:
+$$\inner{Ox}{Oy} = \inner{x}{O^TOy} = \inner{x}{y}$$
+Z tego wynika:
+\begin{equation}\label{eq:def_ortogonal_operator_2}
+    O^TO = I,
+\end{equation} gdzie $I$ macierz jednostkowa. 
+
+\begin{theorem}
+    Operator ortogonalny $O$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz ortogonalną.
+\end{theorem}
+\begin{proof}
+    Załóżmy, że $O$ jest operatorem ortogonalnym w przestrzeni euklidesowej z bazą ortonormalną $\base{e}$, i odpowiednią mu macierzą, oznaczymy ją jako $A$.
+    Ponieważ $\base{e}$ jest bazą ortonormalną, to $O(\mathbf{e}_1), \ldots, O(\mathbf{e}_n)$ też jest bazą ortonormalną, dlatego że $O$ zachowuje iloczyn skalarny tych wektorów. Te wektory traktowane jako wektory kolumnowe tworzą macierz ortogonalną, tworząc jednocześnie macierz $A$.
+
+    Na odwrót, załóżmy, że macierz $A$ jest ortogonalna. Niech $x, y \in V$. Wówczas, korzystając z tw. \ref{theorem:properties_of_transposed_operator} (4 własność):
+    $$\inner{O(x)}{O(y)} = \inner{Ax}{Ay} = (Ax)^TAy = x^TA^TAy = x^Ty = \inner{x}{y},$$
+    a to oznacza, że $O$ jest izometrią liniową.
+\end{proof}
+
+Operatory symetryczne, antysymetryczne oraz ortogonalne są szczególnymi przypadkami operatora normalnego.
+Jak widzimy z powyższego, utożsamiamy macierze symetryczne, antysymetryczne, ortogonalne z operatorami liniowymi lub inaczej, w przestrzeni euklidesowej każda z tych macierzy reprezentuje przekształcenie liniowe.
+
+\section{Twierdzenie spektralne}
+
+\section{Postać normalna macierzy rzeczywistych symetrycznych, antysymetrycznych oraz ortogonalnych}
+
+W tym podrozdziale omówimy postaci normalne dla macierzy rzeczywistych symetrycznych, antysymetrycznych oraz ortogonalnych i pokażemy kilka przykładów. Także omówimy dlaczego przypadek zespolony jest bardziej skomplikowany.
+
+
+
+
+%  Wzór na współczynniki macierzy w bazie ortonormalnej.
+% TODO:
+% 4. Ostatni podrozdział: forme normalne i przeprowadzić dowód (ale bez tw spektralnego) 
+% Skorzystać z tego:
+% W dowodach poniższych twierdzeń nie będziemy korzystać z ogólnego twierdzenia spektralnego dla operatorów normalnych, lecz przeprowadzimy dowody bezpośrednio, wykorzystując jedynie własności iloczynu skalarnego oraz definicje odpowiednich klas operatorów.
+% 5. Opisać dla czego przypadek zespolony jest cięższy i wprowdzić rozdział 2 (Dzielniki elementarne oraz postać Jordana)
+
+% Udowowdnić Tw Spektralne dla operatora normalnego, lepiej pokazać że operator normalny ma baze ortonormalną
+% Pokazać że macierz w R ma wartości własne sprzężone(parami)
+% Pokazać że operator liniowy w R 

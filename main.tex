@@ -1,0 +1,85 @@
+% main.tex - Praca licencjacka
+\documentclass[final,a4paper,openany,12pt]{mwbk}
+
+% \usepackage{polski}
+\usepackage[polish]{babel}
+% This allows Tectonic to use OpenType/TrueType fonts properly.
+\usepackage{fontspec} 
+\usepackage{lmodern}
+
+% Page layout (double-sided print with binding margin)  
+% \setlength{\oddsidemargin}{0.46cm}
+% \setlength{\evensidemargin}{-0.54cm}
+% \setlength{\textwidth}{16cm}
+% \linespread{1.1}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    top=25mm,
+    bottom=25mm,
+    inner=35mm,
+    outer=20mm
+}
+
+\linespread{1.1}
+
+% Math packages
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+% Graphics  
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+% Hyperlinks  
+\usepackage[hidelinks]{hyperref}
+
+% Bibliography  
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{plain} 
+
+% Theorem-like environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Twierdzenie}[chapter]
+\newtheorem{lemma}[theorem]{Lemat}
+\newtheorem{corollary}[theorem]{Wniosek}
+\newtheorem{proposition}[theorem]{Stwierdzenie}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definicja}
+\newtheorem{example}[theorem]{Przykład}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Uwaga}
+
+% Fixtures
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\base}[1]{\mathbf{#1}_1, \ldots, \mathbf{#1}_n}
+
+% Document
+\begin{document}
+\fontfamily{lmr}\selectfont
+
+% Title page  
+\input{src/titlepage.tex}
+
+% Table of contents
+\tableofcontents
+
+% Chapters
+\input{src/preface.tex}
+\input{src/chapters/1_chapter.tex}
+\input{src/chapters/2_chapter.tex}
+
+% Bibliography
+\bibliography{references.bib}
+\end{document}
