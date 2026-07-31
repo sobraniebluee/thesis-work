@@ -1,0 +1,99 @@
+\section{Liniowe operatory w przestrzeni euklidesowej}
+
+Rozpatrzmy $n$-wymiarową przestrzeń euklidesową $V$. Niech będzie dany dowolny operator liniowy $A$ w tej przestrzeni.
+
+\begin{definition}
+    Operator liniowy $A^T$ nazywa się \textbf{operatorem transponowanym do operatora} $A$, jeśli dla dowolnych dwóch wektorów $x, y \in V$:
+    \begin{equation}\label{eq:def_transposed_operator}
+        \inner{Ax}{y} = \inner{x}{A^Ty}
+    \end{equation}
+\end{definition}
+\begin{remark}
+Odpowiednik operatora transponowanego w przestrzeni unitarnej jest operator sprzężony.
+\end{remark}
+Następujące twierdzenia podamy bez dowodów, ponieważ są analogiczne jak w przypadku dla przestrzeni unitarnej.
+
+\begin{theorem}
+Dla każdego liniowego operatora $A$ w przestrzeni euklidesowej $V$ zawsze istnieje operator transponowany $A^T$ i to tylko jeden.
+\end{theorem}
+% \begin{proof}
+% Patrz Twierdzenie \ref{theorem:existing_of_conjugated_operator}
+% \end{proof}
+
+\begin{theorem}
+    W przestrzeni euklidesowej $V$ z bazą ortonormalną, transponowanemu operatorowi $A^T$ odpowiada macierz transponowana.
+\end{theorem}
+
+\begin{theorem}\label{theorem:properties_of_transposed_operator}
+    Z definicji operatora transponowanego mamy następujące własności:
+    \begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+        \item $(A^T)^T = A$
+        \item $(A + B)^T = A^T + B^T$
+        \item $(\lambda A)^T = \lambda(A^T)$, gdzie $\lambda \in \R$
+        \item $(AB)^T = B^TA^T$
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}\label{def:real_normal_operator}
+Operator liniowy $A$ nazywa się \textit{normalnym}, jeśli:
+$$AA^T = A^TA$$
+\end{definition}
+\begin{remark}
+W przestrzeni unitarnej, operator normalny definiujemy jako:
+$$A^*A = AA^*,$$ co pokrywa się z $$AA^T = A^TA$$ w przestrzeni euklidesowej.
+\end{remark}
+\begin{theorem}
+    Operator normalny $A$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz normalną.
+\end{theorem}
+
+\begin{definition}\label{def:symmetric_operator}
+Operator liniowy $S$ nazywa się \textit{symetrycznym}, jeśli:
+$$S = S^T$$
+\end{definition}
+\begin{theorem}\label{theorem:sym_op_has_same_matrix}
+    Operator symetryczny $S$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz symetryczną.
+\end{theorem}
+
+\begin{remark}
+Odpowiednik operatora symetrycznego w przestrzeni unitarnej jest operator hermitowski.
+\end{remark}
+
+\begin{definition}\label{def:skew_symmetric_operator}
+Operator liniowy $K$ nazywa się \textit{antysymetrycznym}, jeśli:
+$$K = -K^T$$
+\end{definition}
+
+\begin{theorem}
+    Operator antysymetryczny $K$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz antysymetryczną.
+\end{theorem}
+\begin{proof}
+    Z definicji operatora antysymetrycznego dla dowolnych dwóch wektorów $\textbf{e}_i$, $\textbf{e}_k$ z bazy ortonormalnej $\base{e}$, gdzie $i, k \in \{1, \dots, n\}$:
+    $$\inner{K\textbf{e}_k}{\textbf{e}_i} = \inner{\textbf{e}_k}{-K\textbf{e}_i}$$
+    Korzystając ze wzoru \eqref{eq:def_ortonormal_coeffs} oraz z jednorodności i przemienności iloczynu skalarnego:
+    $$ a_{ik} = \inner{K\textbf{e}_k}{\textbf{e}_i} = \inner{\textbf{e}_k}{-K\textbf{e}_i} = \inner{-K\textbf{e}_i}{\textbf{e}_k} = -\inner{K\textbf{e}_i}{\textbf{e}_k} = -a_{ki}, $$ gdzie $i, k \in \{1, \dots, n\}$. Z tego wynika, że operatorowi antysymetrycznemu odpowiada macierz antysymetryczna.
+\end{proof}
+
+\begin{definition}\label{def:ortogonal_operator}
+    Operator liniowy $O$ nazywa się \textit{ortogonalnym} lub inaczej \textit{izometrią liniową}, jeśli zachowuje metrykę przestrzeni, tj. jeśli dla dowolnych dwóch wektorów $x, y \in V$:
+    \begin{equation}\label{eq:def_ortogonal_operator}
+        \inner{Ox}{Oy} = \inner{x}{y}
+    \end{equation}
+\end{definition}
+Równość \eqref{eq:def_ortogonal_operator}, jak i dla operatora unitarnego, możemy przepisać w następujący sposób na mocy \eqref{eq:def_transposed_operator}:
+$$\inner{Oa}{b} = \inner{a}{O^Tb}$$
+Podstawiając pod $a = x$, a pod $b = Oy$ otrzymujemy:
+$$\inner{Ox}{Oy} = \inner{x}{O^TOy} = \inner{x}{y}$$
+Z tego wynika:
+\begin{equation}\label{eq:def_ortogonal_operator_2}
+    O^TO = I,
+\end{equation} gdzie $I$ operator tożsamościowy (macierz jednostkowa). 
+\begin{remark}
+Odpowiednik operatora ortogonalnego w przestrzeni unitarnej jest operator unitarny.
+\end{remark}
+\begin{theorem}
+    Operator ortogonalny $O$ w przestrzeni euklidesowej $V$ z bazą ortonormalną ma macierz ortogonalną.
+\end{theorem}
+
+Operatory symetryczne, antysymetryczne oraz ortogonalne, jak i dla przestrzeni unitarnej, są szczególnymi przypadkami operatora normalnego.
+
+Jak widzimy z powyższego, utożsamiamy macierze hermitowskie, unitarne, symetryczne, antysymetryczne oraz ortogonalne z operatorami liniowymi lub inaczej, w przestrzeni unitarnej każda z tych macierzy reprezentuje przekształcenie liniowe.

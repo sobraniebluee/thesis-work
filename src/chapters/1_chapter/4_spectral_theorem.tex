@@ -1,0 +1,135 @@
+\section{Twierdzenie spektralne}
+W tym podrozdziale udowodnimy, że każdy operator normalny w przestrzeni unitarnej, można sprowadzić do postaci diagonalnej w bazie ortonormalnej.
+
+\begin{theorem}[Spektralne]
+    Niech $A$ operator normalny w przestrzeni unitarnej $V$. Wówczas istnieje baza ortonormalna w przestrzeni $V$, złożona z wektorów własnych operatora $A$, w której macierz $A$ jest diagonalna:
+    $$A = U\{\lambda_k\}U^{-1},$$
+    gdzie $U$ macierz unitarna, której kolumny tworzą bazę ortonormalną, $\lambda_k$ są wartościami własnymi $A$.
+\end{theorem}
+Dla dowodu tego twierdzenia najpierw sformułujemy kilka definicji oraz lematów.
+
+\begin{definition}
+    Podprzestrzeń niezmiennicza $W$ przestrzeni wektorowej $V$ względem odwzorowania liniowego $A \colon V \to V$, jest taka przestrzeń, że dla każdego wektora $w \in W$ zachodzi: $A(w) \in W$, innymi słowy $A(W) \subset W$.
+\end{definition}
+
+\begin{lemma}\label{lemma:invariant_ortogonal_space_for_norm_ops}
+    Niech $W$ jakaś podprzestrzeń przestrzeni unitarnej $V$, która jest niezmiennicza względem operatora liniowego $A$. Jeśli $T$ jest ortogonalnym dopełnieniem podprzestrzeni $W$ (tzn. $V = W \oplus T$, $W \perp T$), wtedy $T$ jest niezmiennicze względem $A^*$.
+\end{lemma}
+\begin{proof}
+    Niech mamy dowolny wektor $x \in W$. Z definicji podprzestrzeni niezmienniczej: $Ax \in W$, wtedy dla każdego wektora $y \in T$ zachodzi: $\inner{Ax}{y} = 0$. Z definicji operatora sprzężonego \eqref{eq:def_conjugated_operator} mamy: 
+    \begin{equation}\label{eq:local_proof_3}
+        \inner{x}{A^*y} = 0.
+    \end{equation} 
+    Załóżmy nie wprost, że $A^*y \notin T$. Z jednoznaczności rozkładu $V = W \oplus T$, wynika, że $A^*y = w + t$, gdzie $w \in W, t \in T$ oraz $w \neq 0$. Jeśli w \eqref{eq:local_proof_3} zamiast $x$ podstawimy $w$:
+    $$ \inner{w}{A^*y} = \inner{w}{w + t} = \inner{w}{w} + \inner{w}{t} = \inner{w}{w} + 0 = \norm{w}^2$$
+    Z powyższego wynika, że $w = 0$, ale z założenia $w \neq 0$, mamy sprzeczność. Więc $A^*y \in T$.
+\end{proof}
+
+\begin{lemma}[Wspólny wektor własny]\label{lemma:same_eigenvector}
+Niech $A$ operator normalny w przestrzeni unitarnej $V$ oraz $A$ ma wektor własny $v \in V$ dla wartości własnej $\lambda$. Wtedy $v$ też jest wektorem własnym $A^*$ dla $\bar{\lambda}$.
+\end{lemma}
+\begin{proof}
+Udowodnimy najpierw, że $A - \lambda I$ jest operatorem normalnym:
+$$(A - \lambda I)(A - \lambda I)^* = (A - \lambda I)^*(A - \lambda I)$$
+Lewa strona:
+$$(A - \lambda I)(A - \lambda I)^* = (A - \lambda I)(A^* - \bar{\lambda} I) = AA^* - \bar{\lambda}A - \lambda A^* + \lambda\bar{\lambda}I$$
+Prawa strona:
+$$(A - \lambda I)^*(A - \lambda I) = (A^* - \bar{\lambda} I)(A - \lambda I) = A^*A - \lambda A^* - \bar{\lambda}A + \bar{\lambda} \lambda I = AA^* - \bar{\lambda}A - \lambda A^* + \lambda \bar{\lambda} I$$
+Prawa strona i lewa są równe, więc $A - \lambda I$ jest operatorem normalnym. Z własności operatora normalnego (Twierdzenie \ref{theorem:normal_operator_property}):
+$$\norm{(A - \lambda I)v} = \norm{(A^* - \bar{\lambda} I)v}$$
+Lewa strona zeruje się wtedy kiedy i prawa, więc $v$ jest wektorem własnym $A$ dla $\lambda$ oraz $A^*$ dla $\bar{\lambda}$.
+\end{proof}
+Teraz mamy wszystkie definicje oraz lematy do udowodnienia Twierdzenia Spektralnego.
+
+\begin{proof}[Dowód (Spektralne)]
+Najpierw udowodnimy, że dla operatora normalnego $A$ istnieje baza ortonormalna złożona z wektorów własnych.
+
+Niech $A$ operator normalny w przestrzeni unitarnej $V$ z wymiarem $\dim{V} = n$.
+Operator $A$ oraz $A^*$ na mocy Lematu~\ref{lemma:same_eigenvector} (\textit{Wspólny wektor własny}) mają wspólny wektor $x_1 \in V$:
+$$Ax_1 = \lambda_1 x_1, \quad A^*x_1 = \bar{\lambda}_1 x_1 \quad (x_1 \neq 0)$$
+Niech $W_1$ jest jednowymiarową przestrzeń generowaną przez wektor $x_1$: $$W_1 = \mathrm{lin}(\{x_1\}),$$ oraz oznaczmy przez $T_1$ dopełnienie ortogonalne dla $W_1$ w $V$:
+
+$$ V = W_1 \oplus T_1, \quad W_1 \perp T_1$$
+
+$T_1$ ma wymiar $\dim{T_1} = n - 1$.
+Podprzestrzeń $W_1$ jest niezmiennicza względem $A$ oraz $A^*$, wynika to z tego, że $W_1$ jest generowana przez $x_1$, więc:
+
+$$ Ax_1 = \lambda_1 x_1 \in W_1, \quad A^*x_1 = \bar{\lambda}_1 x_1 \in W_1 $$
+
+Z Lematu~\ref{lemma:invariant_ortogonal_space_for_norm_ops} wynika, że $T_1$ też jest niezmiennicze względem $A$ i $A^*$.Wtedy na mocy Lematu~\ref{lemma:same_eigenvector} (\textit{Wspólny wektor własny}) w niezmienniczej podprzestrzeni  $T_1$, operatory liniowe $A, A^*$ mają wspólny wektor własny $x_2$:
+$$Ax_2 = \lambda_2 x_2, \quad A^*x_2 = \bar{\lambda}_2 x_2 \quad (x_2 \neq 0)$$
+Wektory $x_1, x_2$ są ortogonalne $x_1 \perp x_2$, więc liniowo niezależne. Niech teraz $W_2$ dwuwymiarowa podprzestrzeń $V$ z bazą $\{x_1, x_2\}$:
+$$ W_2 = \mathrm{lin}(\{x_1, x_2\}) $$
+Jak i poprzednio $W_2$ jest niezmiennicze względem $A, A^*$ oraz oznaczmy dopełnienie ortogonalne przez $T_2$:
+
+$$ V = W_2 \oplus T_2, \quad W_2 \perp T_2 $$
+
+I tak samo jak wcześniej na mocy Lematu~\ref{lemma:invariant_ortogonal_space_for_norm_ops} oraz Lematu~\ref{lemma:same_eigenvector} (\textit{Wspólny wektor własny}) ustalamy istnienie wspólnego własnego wektora $x_3$ w $T_2$ dla $A, A^*$. 
+Wektory $x_1, x_2, x_3$ są ortogonalne $x_1 \perp x_3, x_2 \perp x_3$.
+
+Kontynuując ten proces, aż $\dim{T_k} = 0$, w taki sposób otrzymamy $n$-ortogonalnych wektorów własnych $x_1, \ldots, x_n$ dla $A, A^*$:
+$$Ax_k = \lambda_k x_k, \quad A^*x_k = \bar{\lambda}_k x_k \quad (x_k \neq 0),$$
+które tworzą bazę dla przestrzeni unitarnej $V$.
+
+Wektory $x_1, \ldots, x_n$ możemy znormalizować zachowując powyższe równości:
+$$ Ax_k = \lambda_k x_k $$
+Dzielimy obie strony przez $\norm{x_k} \in \R$:
+$$ A \frac{x_k}{\norm{x_k}} = \lambda_k \frac{x_k}{\norm{x_k}} $$
+To samo jest dla $A^*$.
+
+Udowodniliśmy, że dla operatora normalnego $A$ istnieje baza ortonormalna, złożona z wektorów własnych.
+
+Niech $U$ oznacza macierz o kolumnach ($x_1, \ldots, x_n$), z ortonormalności wektorów, mamy $U^*U = I$, czyli $U^* = U^{-1}$. Więc bazie ortonormalnej ($x_1, \ldots, x_n$) odpowiada macierz unitarna $U$.
+
+Równość $Ax_k = \lambda_k x_k$ możemy przepisać jako:
+$$AU = (\lambda_1 x_1 \ldots \lambda_n x_n) = U\{\lambda_k\} $$
+Mnożąc obie strony przez $U^{-1}$:
+$$A = U\{\lambda_k\}U^{-1}$$
+Udowodniliśmy, że macierz normalnego operatora $A$ jest unitarnie podobna do macierzy diagonalnej.   
+\end{proof}
+
+\begin{theorem}
+    Niech $H$ operator hermitowski w przestrzeni unitarnej $V$.
+    Wówczas:
+
+    (1) Wszystkie wartości własne $H$ są rzeczywiste.
+
+    (2) Istnieje baza ortonormalna w przestrzeni $V$, złożona z wektorów własnych operatora $H$, w której macierz $H$ jest diagonalna:
+    $$H = U\{\lambda_k\}U^{-1},$$
+    gdzie $U$ macierz unitarna, której kolumny tworzą bazę ortonormalną, $\lambda_k \in \R$ są wartościami własnymi $H$.
+\end{theorem}
+\begin{proof}
+\textit{(2)} Operator hermitowski $H$ jest operatorem normalnym ($HH^* = H^*H = H^2$), więc na mocy Twierdzenia Spektralnego ma bazę ortonormalną złożoną z wektorów własnych:
+$$H = U\{\lambda_k\}U^{-1}$$
+
+\textit{(1)} Z $H = H^*$ wynika:
+$$Hx_k = \lambda_k x_k, \quad H^*x_k = \bar{\lambda}_k x_k$$
+$$Hx_k = H^*x_k \implies \lambda_k x_k = \bar{\lambda}_k x_k$$
+Ponieważ $x_k \neq 0$, to:
+$$ \lambda_k = \bar{\lambda}_k, $$
+tj. wszystkie wartości własne są rzeczywiste.
+\end{proof}
+
+\begin{theorem}
+    Niech $U$ operator unitarny w przestrzeni unitarnej $V$.
+    Wówczas:
+
+    (1) Wszystkie wartości własne $U$ wynoszą jeden po modułu: $|\lambda_k| = 1$.
+
+    (2) Istnieje baza ortonormalna w przestrzeni $V$, złożona z wektorów własnych operatora $U$, w której macierz $U$ jest diagonalna:
+    $$U = U_1\{\lambda_k\}{U_1}^{-1},$$
+    gdzie $U_1$ macierz unitarna, której kolumny tworzą bazę ortonormalną, $\lambda_k$ są wartościami własnymi $U$.
+\end{theorem}
+\begin{proof}
+\textit{(2)} Operator unitarny $U$ jest operatorem normalnym ($UU^* = U^*U = I$), więc na mocy Twierdzenia Spektralnego ma bazę ortonormalną złożoną z wektorów własnych:
+$$U = U_1\{\lambda_k\}{U_1}^{-1}$$
+
+\textit{(1)} Z $UU^* = U^*U = I$ wynika:
+$$Ux_k = \lambda_k x_k, \quad U^*x_k = \bar{\lambda}_k x_k$$
+Wymnożymy $Ux_k = \lambda_k x_k$ obustronnie przez $U^*$:
+$$U^*Ux_k = \lambda_k(U^*x_k)$$
+$$Ix_k = x_k = \lambda_k \bar{\lambda}_k x_k$$
+Ponieważ $x_k \neq 0$, to:
+$$\lambda_k \bar{\lambda}_k = |\lambda_k|^2 = 1$$
+$$|\lambda_k|^2 = 1 \implies |\lambda_k| = 1$$
+\end{proof}

@@ -1,0 +1,105 @@
+\chapter{Formy normalne macierzy rzeczywistych}
+
+Głównym celem pracy jest omówienie form normalnych macierzy zespolonych symetrycznych, antysymetrycznych oraz ortogonalnych.
+Dlatego najpierw musimy omówić odpowiednie przypadki rzeczywiste macierzy symetrycznych, antysymetrycznych oraz ortogonalnych.
+Formą normalną będziemy nazywać postać diagonalną macierzy lub najbardziej podobną postać do postaci diagonalnej.  
+W tym rozdziale będą przedstawione podstawowe pojęcia oraz formy normalne dla macierzy rzeczywistych symetrycznych, antysymetrycznych oraz ortogonalnych.
+
+\section{Podstawowe pojęcia}
+
+Niech $V$ będzie przestrzenią liniową nad ciałem $\K$ liczb zespolonych lub rzeczywistych ($\K$ = $\C$ lub $\K$ = $\R$). Przekształcenie $\inner{\cdot}{\cdot} \colon V \times V \to \K$ przyporządkowujące parze wektorów ($x$, $y$) $\in$ $V \times V$ liczbę z $\K$ nazywamy \textbf{iloczynem skalarnym}, jeżeli dla dowolnych wektorów $x$, $y$, $z$ $\in$ $V$ spełnione są następujące warunki:
+
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+    \item $\inner{x}{y}$ = $\overline{\inner{y}{x}}$, gdzie $\overline{\inner{y}{x}}$ jest sprzężeniem zespolonym liczby $\inner{y}{x}$
+    \item $\inner{ax}{y}$ = $a\inner{x}{y}$, gdzie $a \in \K$
+    \item $\inner{x + y}{z}$ = $\inner{x}{z} + \inner{y}{z}$
+    \item $\inner{x}{x} \geq 0$ oraz $\inner{x}{x} = 0 \iff x = 0$ (warunek o dodatniej określoności)
+\end{enumerate}
+Z (1), (2), (3) wynika, że:
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*), start=5]
+    \item $\inner{x}{ay}$ = $\overline{\inner{ay}{x}}$ = $\overline{a}\inner{x}{y}$, gdzie $a \in \K$
+    \item $\inner{x}{y + z}$ = $\inner{x}{z} + \inner{x}{y}$
+\end{enumerate}
+
+\begin{definition}
+Przestrzeń liniową $V$ nad ciałem liczb $\K$ wraz z wyróżnionym iloczynem skalarnym $\inner{\cdot}{\cdot}$, tj. parę ($V$, $\inner{\cdot}{\cdot}$) nazywamy $\textbf{przestrzenią unitarną}$.
+W przypadku gdy $\K = \R$, przestrzeń unitarną nazywamy \textbf{przestrzenią euklidesową}.
+\end{definition}
+
+Dalej będziemy rozpatrywać tylko przestrzenie o skończonym wymiarze.
+
+\begin{definition}
+    \textbf{Normą wektora} $x \in V$ nazywamy liczbę $\norm{x} = \sqrt{\inner{x}{x}}$ 
+\end{definition}
+
+Niech $V$ będzie $n$-wymiarową przestrzenią unitarną z dowolną bazą $\base{e}$. Niech \textbf{x}, \textbf{y} będą dowolnymi wektorami z $V$, gdzie $x_i$, $y_i$ są współrzędnymi tych wektorów:
+
+\begin{center}
+    $$\textbf{x} = \sum_{i=1}^{n}{x_{i}e_{i}} \quad \textbf{y} = \sum_{i=1}^{n}{y_{i}e_{i}}$$
+\end{center}
+Wtedy z (2), (3), (5), (6):
+\begin{center}
+    $$\inner{\textbf{x}}{\textbf{y}} = \inner{
+        \sum_{i=1}^{n}{x_{i} \textbf{e}_i}
+    }{
+        \sum_{k=1}^{n}{y_{k} \textbf{e}_k}
+    } = \sum_{i=1}^{n}{\sum_{k=1}^{n}{x_{i} \bar{y}_{k} \inner{\textbf{e}_{i}}{\textbf{e}_{k}}}}$$
+\end{center}
+Niech
+\begin{equation}\label{eq:def_h}
+    h_{ik} = \inner{\textbf{e}_i}{\textbf{e}_k}, \text{ dla }k,i = 1, \ldots, n 
+\end{equation}
+Wtedy: 
+\begin{equation}\label{eq:std_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{i,k=1}^{n}{h_{ik} x_{i} \bar{y}_{k}}
+\end{equation}
+W szczególności:
+
+\begin{equation}
+    \inner{\textbf{x}}{\textbf{x}} = \sum_{i,k=1}^{n}{h_{ik} x_{i} \bar{x}_{k}}
+\end{equation}
+gdzie z \eqref{eq:def_h} oraz własności (1), wynika, że $h_{ik} = \bar{h}_{ki}$.
+
+% TODO: Potrzebujemy to dodać formę hermitowską?
+
+W ten sposób zdefiniowaliśmy iloczyn skalarny dla bazy $\textbf{e}_1, \ldots, \textbf{e}_n$. Ponadto jeżeli baza $\textbf{e}_1, \ldots, \textbf{e}_n$ jest ortonormalna, to znaczy taka, że każdy wektor bazy jest ortogonalny do pozostałych oraz ma normę jeden:
+\begin{equation}\label{eq:def_ortonormal_base}
+    \inner{\textbf{e}_i}{\textbf{e}_k} = \delta_{ik} = \begin{cases}
+    0, \text{ dla } i \neq k \\
+    1, \text{ dla } i = k
+\end{cases}
+\end{equation}
+Wtedy dla bazy ortonormalnej iloczyn skalarny przyjmuje postać, którą będziemy nazywać \textbf{standardową}:
+\begin{equation}\label{eq:std_normal_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{i=1}^{n}{x_{i} \bar{y}_{i}}
+\end{equation}
+\begin{equation}
+    \inner{\textbf{x}}{\textbf{x}} = \sum_{i=1}^{n}{x_{i} \bar{x}_{i}} = \sum_{i=1}^{n}{|x_{i}|^2}
+\end{equation}
+Dla wektorów \textbf{x}, \textbf{y} ze współrzędnymi $x_i$ i $y_i$ dla $i = 1, \ldots, n$ w bazie $\textbf{e}_1, \ldots, \textbf{e}_n$
+przestrzeni euklidesowej iloczyn skalarny redukuje się do:
+\begin{equation}\label{eq:std_euclid_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{k,i=1}^{n}{h_{ik} x_{i} {y}_{k}}
+\end{equation}
+Dla bazy ortonormalnej:
+\begin{equation}\label{eq:std_euclid_normal_inner}
+    \inner{\textbf{x}}{\textbf{y}} = \sum_{i=1}^{n}{x_{i} {y}_{i}}
+\end{equation}
+\begin{equation}
+    \inner{\textbf{x}}{\textbf{x}} = \sum_{i=1}^{n}{x_{i}^2}
+\end{equation}
+
+\
+
+\begin{definition}
+Odwzorowanie $A \colon X \to Y $, gdzie $X$ i $Y$ są przestrzeniami liniowymi nad ciałem liczb $\K$, nazywa się \textbf{operatorem liniowym} jeżeli spełnia następujące warunki dla dowolnych dwóch wektorów $x, y \in X$ oraz dowolnego skalara $a \in \K$:
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+    \item $A(x + y) = A(x) + A(y)$ (zachowuje dodawanie wektorów)
+    \item $A(ax) = aA(x)$ (zachowuje mnożenie przez skalar)
+\end{enumerate}
+\end{definition}
+
+Jeśli przestrzenie liniowe $X$ i $Y$ mają skończony wymiar $\dim X = n$, $\dim Y = m$, oraz ustalimy w $X$ bazę $\mathbf{e}_1, \ldots, \mathbf{e}_n$, a w $Y$ bazę $\mathbf{g}_1, \ldots, \mathbf{g}_m$, to odwzorowaniu liniowemu $A$ odpowiada macierz $m \times n$ w następującym sensie: jeżeli wektorowi $\mathbf{x} = \sum_{i=1}^{n} x_i \mathbf{e}_i \in X$ operator $A$ przyporządkowuje wektor $\mathbf{y} = \sum_{i=1}^{m} y_i \mathbf{g}_i \in Y$, to współrzędne tych wektorów są związane wzorem $\mathbf{y} = A\mathbf{x}.$
+\begin{remark}
+W dalszej części pracy, ustaliwszy bazę w przestrzeni $X$ i $Y$, będziemy utożsamiać operator liniowy $A \colon X \to Y$ z jego macierzą $A$ w tej bazie, pisząc po prostu $A$ zarówno dla operatora, jak i dla odpowiadającej mu macierzy.
+\end{remark}

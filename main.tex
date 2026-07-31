@@ -1,17 +1,10 @@
 % main.tex - Praca licencjacka
 \documentclass[final,a4paper,openany,12pt]{mwbk}
 
-% \usepackage{polski}
 \usepackage[polish]{babel}
 % This allows Tectonic to use OpenType/TrueType fonts properly.
 \usepackage{fontspec} 
 \usepackage{lmodern}
-
-% Page layout (double-sided print with binding margin)  
-% \setlength{\oddsidemargin}{0.46cm}
-% \setlength{\evensidemargin}{-0.54cm}
-% \setlength{\textwidth}{16cm}
-% \linespread{1.1}
 
 \usepackage{geometry}
 \geometry{
@@ -77,8 +70,7 @@
 
 % Chapters
 \input{src/preface.tex}
-\input{src/chapters/1_chapter.tex}
-\input{src/chapters/2_chapter.tex}
+\input{src/chapters/1_chapter/index.tex}
 
 % Bibliography
 \bibliography{references.bib}
