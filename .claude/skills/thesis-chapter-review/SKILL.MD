@@ -40,11 +40,6 @@ To jest zasada nadrzędna z CLAUDE.md tego projektu i obowiązuje zawsze:
 2. Jeśli to możliwe, wczytaj też sąsiednie/poprzednie rozdziały (albo main.tex / spis treści),
    żeby sprawdzić spójność terminologiczną — definicje i oznaczenia wprowadzone wcześniej muszą
    być używane konsekwentnie później.
-3. Sprawdź, czy w rozmowie (lub w projekcie) są już wklejone fragmenty źródłowe z Gantmachera
-   (dokładne sformułowania twierdzeń 5, 6, 9, definicji dzielników elementarnych, twierdzenia
-   Jordana). **Nie zgaduj z pamięci treści tych twierdzeń** — różne wydania/tłumaczenia mogą się
-   różnić. Jeśli potrzebnego fragmentu nie ma, zapytaj użytkownika o wklejenie/skan strony z
-   książki, zamiast rekonstruować twierdzenie z pamięci.
 
 ## Krok 1: Poprawność matematyczna (priorytet #1)
 
@@ -61,11 +56,6 @@ Dla każdego dowodu / twierdzenia / definicji w rozdziale sprawdź:
   symetryczne). Sprawdź, czy rozdział nigdzie po cichu nie zakłada własności prawdziwych tylko
   nad R (np. dodatniej określoności, istnienia bazy ortonormalnej z rzeczywistych wartości
   własnych) tam, gdzie mowa o C.
-- **Zgodność z podanym źródłem (Gantmacher)** — jeśli użytkownik dostarczył dokładne
-  sformułowanie twierdzenia/definicji, porównaj punkt po punkcie ze sformułowaniem w rozdziale:
-  czy założenia, teza i oznaczenia się zgadzają. Jeśli sformułowania nie dostarczono, oznacz to
-  wprost jako "nie zweryfikowane ze źródłem — brak dostarczonego fragmentu" zamiast milczeć lub
-  zgadywać.
 
 ## Krok 2: Spójność i konsekwencja całości pracy
 
