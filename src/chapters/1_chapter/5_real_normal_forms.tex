@@ -1,5 +1,285 @@
+% Fixtures
+\newcommand{\cblock}[2]{
+\left\|
+\begin{matrix}
+#1 & #2\\
+-#2 & #1
+\end{matrix}
+\right\|
+}
+
+% Content
 \section{Postać normalna macierzy rzeczywistych symetrycznych, antysymetrycznych oraz ortogonalnych}
 
 W tym podrozdziale omówimy postaci normalne dla macierzy rzeczywistych symetrycznych, antysymetrycznych oraz ortogonalnych na podstawie Twierdzenia Spektralnego i pokażemy kilka przykładów. Także omówimy dlaczego przypadek zespolony jest bardziej skomplikowany.
 
-Niech $A$ operator liniowy 
+\vspace{0.3em}
+\medskip
+\noindent\textbf{Forma normalna macierzy symetrycznej}
+\vspace{0.3em}
+
+
+Przypadek operatora symetrycznego, któremu odpowiada macierz symetryczna, jest prosty, ponieważ możemy bezpośrednio skorzystać z Twierdzenia Spektralnego dla operatora hermitowskiego \ref{theorem:hermitian_spectral}.  
+
+Macierz symetryczna jest szczególnym przypadkiem macierzy hermitowskiej w przestrzeni euklidesowej, ponieważ $S = S^* = \overline{S^T}$, redukuje się do $S = S^T$ dla macierzy rzeczywistej. Macierz hermitowska ma tylko rzeczywiste wartości własne. Z tego możemy wywnioskować, że zawsze będzie istnieć baza ortonormalna złożona z rzeczywistych wektorów własnych w której macierz $S$ jest diagonalna, więc \textbf{forma normalna macierzy symetrycznej} $S$ ma następujący wygląd:
+\begin{equation}
+    S = O\{\lambda_i\}O^T, \quad O^T = O^{-1} 
+\end{equation}
+gdzie $O$ macierz ortogonalna, której kolumny tworzą bazę ortonormalną złożoną z wektorów własnych macierzy $S$, a $\lambda_i \in 
+\R$ wartości własne macierzy $S$.
+
+\vspace{0.3em}
+\medskip
+\noindent\textbf{Forma normalna macierzy ortogonalnej i antysymetrycznej}
+\vspace{0.3em}
+
+Przypadek macierzy ortogonalnej i antysymetrycznej, jest nieco trudniejszy, ponieważ dla tych macierzy wartości własne mogą być liczbami zespolonymi, więc nie możemy wprost skorzystać z Twierdzenia Spektralnego w przestrzeni rzeczywistej. 
+
+Dla badania formy normalnej macierzy ortogonalnej i antysymetrycznej rozszerzmy przestrzeń euklidesową $V$ do przestrzeni unitarnej $\V$.
+
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+    \item Wektory z $V$ będziemy nazywać \textit{rzeczywistymi}, a wektory z $\V$ \textit{zespolonymi}.
+    \item W przestrzeni unitarnej $\V$ każdy wektor zespolony $z \in \V$ możemy przedstawić jako $z = x + iy$, gdzie $x, y$ wektory rzeczywiste z $V$.
+\end{enumerate}
+
+Niech $A$ operator liniowy w $V$, wtedy w $\V$ operator liniowy $A$ rozszerza się do:
+$$ Az = A(x + iy) = Ax + iAy$$
+$$ A\bar{z} = A(x - iy) = Ax - iAy$$
+Taki operator $A$ będziemy nazywać \textit{rzeczywistym} w przestrzeni unitarnej $\V$.
+
+Niech $A$ operator normalny rzeczywisty w $\V$. Warunek operator normalnego $A^*A = AA^*$ w przypadku rzeczywistym redukuje się do $A^TA = AA^T$. Na mocy Twierdzenia Spektralnego operator normalny w przestrzeni unitarnej $\V$ ma bazę ortonormalną $U$, złożoną z wektorów własnych, w której ma postać diagonalną, gdzie na przekątnej leżą wartości własne $A$. 
+
+Równanie charakterystyczne operatora $A$ będzie miało współczynniki rzeczywiste, więc wartości własne zespolone zawsze będą w parze: $\lambda, \bar{\lambda} \in \C$. Z $Az = \lambda z $ wynika $\overline{Az} = \overline{\lambda z} \implies  A\bar{z} = \bar{\lambda}\bar{z}$, tj. sprzężonym wartościom własnym odpowiadają sprzężone wektory własne.
+% TODO: add source https://en.wikipedia.org/wiki/Complex_conjugate_root_theorem#cite_note-Jeffrey-2%
+
+Z bazy ortonormalnej $U$ wybierzmy dwa dowolne wektory: $z, \bar{z}$, które będą odpowiadać parze wartości własnych: $\lambda, \bar{\lambda}$. Z własności bazy ortonormalnej $z, \bar{z}$ są ortogonalne, więc możemy stworzyć z nich dwuwymiarową podprzestrzeń przestrzeni $\V$:
+$$ W = \mathrm{lin}(z, \bar{z}) $$
+W tej przestrzeni możemy stworzyć bazę rzeczywistą:
+\[
+\begin{cases}
+z = x + iy & \text{gdzie } x, y \in V \\
+\bar{z} = x - iy & \text{gdzie } x, y \in V
+\end{cases}
+\]
+
+$$ x = \frac{1}{2}(z + \bar{z}), \quad y = \frac{1}{2i}(z - \bar{z})$$
+Wektory $x, y \in V$ są ortogonalne:
+$$ \inner{z}{\bar{z}} = 0 \implies \inner{x + iy}{x - iy} = 0 \implies \inner{x}{x} + 2i\inner{x}{y} - \inner{y}{y} = 0 $$
+Ostatnią równość możemy przepisać jako:
+$$\norm{x}^2 + 2i\inner{x}{y} - \norm{y}^2 = 0$$
+
+Norma wektora jest zawsze liczbą rzeczywistą oraz $\inner{x}{y}$ też jest liczbą rzeczywistą ponieważ $x, y$ należą do przestrzeni euklidesowej $V$. Więc:
+\begin{equation}\label{eq:real_vec_orthogonal}
+    \inner{x}{y} = 0 \implies x \perp y
+\end{equation}
+Zauważmy, że:
+$$ \norm{x}^2 = \norm{y}^2 $$
+Wtedy:
+\begin{equation}\label{eq:norm_of_real_vec}
+    \norm{z} =\sqrt{\norm{x}^2 + \norm{y}^2 } = 1 \implies \norm{x}^2 = \norm{y}^2 = \frac{1}{2} 
+\end{equation}
+Wektory $x, y$, rzeczywiście, tworzą bazę ortogonalną.
+
+Oznaczmy wartość własną jako $\lambda = a + ib$, gdzie $a, b \in \R$. Wyraźmy operator $A$ w bazie $\mathrm{lin}(x, y)$:
+$$ Az = \lambda z, \quad Az = Ax + iAy  $$
+$$ Ax + iAy = (a + ib)(x + iy) = ax + iay + ibx - by = (ax - by) + i(bx + ay) $$
+Jeśli porównamy część rzeczywistą oraz część urojną, to mamy:
+\begin{equation}\label{eq:operator_A_coeffs}
+    Ax = ax - by, \quad Ay = bx + ay
+\end{equation}
+Dla wartości własnej sprzężonej wynik $\bar{\lambda}$ jest ten sam. W ten sposób przedstawiliśmy wektory $Ax, Ay$ za pomocą wektorów bazowych $x, y$. Jeśli potraktujemy współczynniki przy wektorach bazowych jako kolumny macierzy operatora $A$ to mamy:
+\begin{equation}\label{eq:real_op_matrix}
+\begin{pmatrix}
+a & b \\
+-b & a
+\end{pmatrix}
+\end{equation}
+
+Wektory własne $z_1, \ldots, z_n$ z bazy $U$ możemy zapisać jak:
+\begin{equation}
+    z_{2k-1} = x_k + iy_k, \quad \bar{z}_{2k} = x_k - iy_k, \quad z_{i} = x_i,
+\end{equation}
+gdzie $(k = 1, 2, \ldots, q;\quad i = 2q + 1, \ldots, n)$ oraz $2q$ jest ilość wektorów zespolonych wraz ze sprzężeniem, oraz od $2q + 1$ do $n$ ilość wektorów rzeczywistych. Tym wektorom własnym odpowiadają wartości własne w ten sam sposób:
+\begin{equation}\label{eq:eigenvalues}
+    \lambda_{2k-1} = a_k + ib_k, \quad \bar{\lambda}_{2k} = a_k - ib_k, \quad \lambda_{i} = a_i
+\end{equation}
+gdzie $(k = 1, 2, \ldots, q;\quad i = 2q + 1, \ldots, n)$ oraz $a_k, b_k, a_i \in \R$.
+
+Wyżej pokazaliśmy \eqref{eq:real_vec_orthogonal}, że dla dowolnego wektora $z_{k} = x_k \pm iy_k$, wektory rzeczywiste $x_k, y_k \in V$ są ortogonalne. Pokażemy teraz, że dla dowolnych dwóch wektorów $z_m = x_m + iy_m$, $z_j = x_j + iy_j$ z bazy ortonormalnej $U$, wektory rzeczywistę $x_m, y_m, x_j, y_j$ są ortogonalne między sobą, gdzie $m \neq j$ oraz $m, j \in \{1, 2, \ldots, n\}$.
+
+Z założenia bazy ortonormalnej wektory $z_m, z_j, \bar{z}_m, \bar{z}_j$ są ortogonalne, więc możemy ułożyć następujący układ równań:
+\[
+\begin{cases}
+\inner{z_m}{z_j} = \inner{x_m + iy_m}{x_j + iy_j} = 0 \\
+\inner{z_m}{\bar{z}_j} = \inner{x_m + iy_m}{x_j - iy_j} = 0
+\end{cases}
+\]
+Z tego wynika:
+\[
+\begin{cases}
+\inner{z_m}{z_j} = \inner{x_m}{x_j} + \inner{y_m}{y_j} + i(\inner{y_m}{x_j} - \inner{x_m}{y_j}) = 0 \\
+\inner{z_m}{\bar{z}_j} = \inner{x_m}{x_j} - \inner{y_m}{y_j} + i(\inner{y_m}{x_j} + \inner{x_m}{y_j}) = 0
+\end{cases}
+\]
+Część rzeczywista i urojona muszą być zero. Porównajmy części rzeczywiste i urojne:
+
+\[
+\text{(Re)} \qquad
+\begin{cases}
+\inner{x_m}{x_j} + \inner{y_m}{y_j} = 0 \\
+\inner{x_m}{x_j} - \inner{y_m}{y_j} = 0
+\end{cases}
+\implies \inner{x_m}{x_j} = 0, \quad \inner{y_m}{y_j} = 0
+\]
+
+\[
+\text{(Im)} \qquad
+\begin{cases}
+\inner{y_m}{x_j} - \inner{x_m}{y_j} = 0 \\
+\inner{y_m}{x_j} + \inner{x_m}{y_j} = 0
+\end{cases}
+\implies \inner{y_m}{x_j} = 0, \quad \inner{x_m}{y_j} = 0
+\]
+Więc dla wszystkich wektorów z bazy $U$:
+$$z_{2k-1} = x_k + iy_k, \quad \bar{z}_{2k} = x_k - iy_k, \quad z_i = x_i \quad (k = 1, 2, \ldots, q; \quad i = 2q + 1, \ldots, n)$$
+wektory rzeczywiste $x_k, y_k, x_i$ są ortogonalne między sobą. 
+
+Z wektorów:
+\begin{equation}\label{eq:real_base}
+x_1, \ y_1, \ \ldots, \ x_k, \ y_k \ \ldots, \ x_q, \ y_q, \quad x_{2q+1}, \ \ldots, \ x_i, \ \ldots, x_n
+\end{equation}
+możemy utworzyć bazę ortogonalną w przestrzeni euklidesowej $V$. Jak wynika z \eqref{eq:norm_of_real_vec} wszystkie wektory możemy łatwo znormalizować, ponieważ każdy z nich ma tę samą normę. Po normalizacji mamy bazę ortonormalną.
+ 
+Korzystając z \eqref{eq:operator_A_coeffs} oraz postaci wartości własnych \eqref{eq:eigenvalues}:
+\begin{equation}\label{eq:op_A_in_real_base}
+   Ax_k = a_k x_k - b_k y_k, \quad Ay_k = b_k x_k + a_k y_k, \quad Ax_i = a_i x_i, 
+\end{equation}
+gdzie $(k = 1, 2, \ldots, q; \ i = 2q + 1, \ldots, n)$.
+
+W bazie \eqref{eq:real_base} operator $A$ ma macierz klatkowo-diagonalną:
+\begin{equation}
+\begin{Bmatrix}
+\cblock{a_1}{b_1},
+&
+\ldots,
+&
+\cblock{a_q}{b_q},
+&
+a_{2q+1},
+&
+\ldots,
+&
+a_n
+\end{Bmatrix}
+\end{equation}
+
+Więc mamy następujące twierdzenie:
+\begin{theorem}\label{theorem:real_normal_form}
+    W przestrzeni euklidesowej $V$ istnieje baza ortonormalna, w której operator normalny $A$ ma macierz klatkowo-diagonalną:
+\begin{equation}
+   A = O
+\begin{Bmatrix}
+\cblock{a_1}{b_1},
+&
+\ldots,
+&
+\cblock{a_q}{b_q},
+&
+a_{2q+1},
+&
+\ldots,
+&
+a_n
+\end{Bmatrix}
+O^{-1}, \quad (O^T = O^{-1}),
+\end{equation}
+gdzie $O$ jest macierzą ortogonalną złożoną z wektorów \eqref{eq:real_base}.
+\end{theorem}
+
+Teraz możemy łatwo wyprowadzić postać normalną dla macierzy antysymetrycznej oraz ortogonalnej.
+
+\begin{theorem}
+Operator antysymetryczny rzeczywisty $K$ w przestrzeni unitarnej $\V$ ma wartości własne w postaci czysto urojonej: $\lambda = ib$, gdzie $b \in \R$  
+\end{theorem}
+\begin{proof}
+Z definicji operator antysymetryczny spełnia warunek $K = -K^*$, co dla rzeczywistego $K$ jest równoważne $K = -K^T$, gdyż $K^* = K^T$
+Operator antysymetryczny jest operatorem normalnym rzeczywistym ($KK^* = K^*K = -K^2$).
+Na mocy Twierdzenia Spektralnego ma bazę ortonormalną złożoną z wektorów własnych. 
+Z $K = -K^T$ wynika oraz na mocy Lematu~\ref{lemma:same_eigenvector} (Wspólny wektor własny):
+$$ Kv = \lambda v, \quad K^Tv = \bar{\lambda} v$$ 
+$$ -Kv = \bar{\lambda} v \implies  Kv = -\bar{\lambda} v \implies \lambda v = -\bar{\lambda} v $$ 
+Ponieważ $v \neq 0$:
+$$ \lambda = -\bar{\lambda} \implies a + ib = -(a - ib) \implies a = 0,$$
+gdzie $a, b \in \R$.
+
+Więc wszystkie wartości własne mają postać $\lambda = ib$, gdzie $b \in \R$.
+\end{proof}
+
+Jak widzimy z Twierdzenia wyżej, operator antysymetryczny $K$ ma wartości czysto urojone, a więc w bazie \eqref{eq:real_base} dla \eqref{eq:op_A_in_real_base} musimy założyć:
+$$ a_1 = a_2 = \ldots = a_q = a_{2q+1} = \ldots = a_n = 0 $$
+Wtedy:
+\begin{equation}
+   Kx_k = - b_k y_k, \quad Ky_k = b_k x_k, \quad Kx_i = 0, 
+\end{equation}
+gdzie $(k = 1, 2, \ldots, q; \ i = 2q + 1, \ldots, n)$.
+
+
+Na mocy Twierdzenia~\ref{theorem:real_normal_form} w przestrzeni euklidesowej \textbf{macierz antysymetryczna} operatora $K$ jest ortogonalnie podobna do macierzy klatkowo-diagonalnej:
+\begin{equation}\label{eq:real_skew_matrix_normal_form}
+    K =
+        O
+\begin{Bmatrix}
+\cblock{0}{b_1},
+&
+\ldots,
+&
+\cblock{0}{b_q},
+&
+0,
+&
+\ldots,
+&
+0
+\end{Bmatrix}
+O^{-1}, \quad (O^T = O^{-1}),
+\end{equation}
+gdzie $O$ jest macierzą ortogonalną złożoną z wektorów \eqref{eq:real_base}.
+
+Postać \eqref{eq:real_skew_matrix_normal_form} jest \textbf{formą normalną rzeczywistą dla macierzy antysymetrycznej}.
+
+Operator ortogonalny $O$ spełnia warunki operatora unitarnego ($O^*O = I$, gdyż $O^* = O^T$), a więc na mocy Twierdzenia Spektralnego~\ref{theorem:unitary_spectral} ma wartości własne równe jedynce z modułu: $|\lambda| = 1, \ \lambda \in \C$, wtedy w bazie \eqref{eq:real_base} dla wzorów \eqref{eq:op_A_in_real_base} musimy założyć:
+$$ |\lambda_k| = a_k^2 + b_k^2 = 1, \quad a_i = \pm1, $$
+gdzie $\lambda_k$ wartość własna operatora $O$ oraz $(k = 1, 2, \ldots, q; \ i = 2q + 1, \ldots, n)$.
+
+Każdą liczbę zespoloną $\lambda_k = a_k + ib_k, \ a_k, b_k \in \R$ ze wzoru Eulera można zapisać następująco:
+$$ \lambda = \cos{\varphi_k} + i\sin{\varphi_k}, $$ gdzie $a_k = \cos{\varphi_k}, \ b_k = \sin{\varphi_k}, \ \varphi_k \in \R$.
+Wtedy wzory \eqref{eq:op_A_in_real_base} możemy zapisać jako:
+\begin{equation}
+   Ox_k = \cos{\varphi_k} x_k - \sin{\varphi_k} y_k, \quad Oy_k = \sin{\varphi_k} x_k + \cos{\varphi_k} y_k, \quad Ox_i = \pm x_i, 
+\end{equation}
+gdzie $(k = 1, 2, \ldots, q; \ i = 2q + 1, \ldots, n)$.
+
+Więc z powyższego oraz Twierdzenia~\ref{theorem:real_normal_form} w przestrzeni euklidesowej \textbf{macierz ortogonalna} operatora $O$ jest ortogonalnie podobna do postaci klatkowo-diagonalnej:
+\begin{equation}\label{eq:orthogonal_matrix_normal_form}
+    O =
+        O_1
+\begin{Bmatrix}
+\cblock{\cos{\varphi_1}}{\sin{\varphi_1}},
+&
+\ldots,
+&
+\cblock{\cos{\varphi_q}}{\sin{\varphi_q}},
+&
+\pm 1,
+&
+\ldots,
+&
+\pm 1
+\end{Bmatrix}
+O_1^{-1}, \quad (O_1^T = O_1^{-1}),
+\end{equation}
+gdzie $O_1$ jest macierzą ortogonalną złożoną z wektorów \eqref{eq:real_base}.
+
+
+Postać \eqref{eq:orthogonal_matrix_normal_form} jest \textbf{formą normalną rzeczywistą dla macierzy ortogonalnej}.
+Klatki $\cblock{\cos{\varphi_q}}{\sin{\varphi_q}}$ macierzy $O$ reprezentują obroty wektrów przestrzni o kąt $\varphi$, a wartości $\pm1$ reprezentują odbicia wektorów przestrzni.

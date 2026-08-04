@@ -1,0 +1,78 @@
+\section{Przykłady}
+
+\begin{example}
+Rozważmy rzeczywistą macierz symetryczną
+$$S = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}.$$
+Równanie charakterystyczne $(2-\lambda)^2 - 1 = 0$ daje wartości własne $\lambda_1 = 3$, $\lambda_2 = 1$. Odpowiadające im znormalizowane wektory własne to $\frac{1}{\sqrt{2}}(1,1)$ oraz $\frac{1}{\sqrt2}(1,-1)$. Macierz ortogonalna złożona z tych wektorów
+$$O = \frac{1}{\sqrt2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+diagonalizuje $S$ zgodnie z Twierdzeniem Spektralnym oraz wyprowadzoną wyżej formą normalną:
+$$S = O\begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix} O^T.$$
+\end{example}
+
+\begin{example}
+Rozważmy rzeczywistą macierz ortogonalną
+$$O = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}.$$
+Równanie charakterystyczne $-\lambda^3 + 1 = 0 \implies \lambda^3 = 1$ ma następujące pierwiastki:
+$\lambda_k = \sqrt[3]{1}(\cos{\frac{\varphi + 2k\pi}{3}} + i\sin{\frac{\varphi + 2k\pi}{3}})$, dla $k = 0, 1, 2$. Otrzymujemy wartość własną rzeczywistą $\lambda_1 = 1$ oraz parę sprzężoną $\lambda_{2,3} = -\frac12 \pm i\frac{\sqrt3}{2}$, dla kąta $\frac{2\pi}{3}$ przy $k=1$ i kąta $\varphi = \frac{4\pi}{3}$ przy $k=2$
+
+Wektory własne odpowiadjące tym wartościom:
+\begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+    \item Dla $\lambda_1$: $v_1 = (1, 1, 1)$,
+    \item Dla $\lambda_2$: $v_2 = \begin{bmatrix}
+            1 \\
+            -\frac{1}{2} + i\frac{\sqrt3}{2} \\
+            -\frac{1}{2} - i\frac{\sqrt3}{2}
+        \end{bmatrix} = \frac{1}{2}\begin{bmatrix}
+            2 \\
+            -1 \\
+            -1
+        \end{bmatrix} + i\frac{\sqrt{3}}{2}\begin{bmatrix}
+            0 \\
+            1 \\
+            -1
+        \end{bmatrix}$
+    \item Dla $\lambda_3$: $v_3 = \begin{bmatrix}
+            1 \\
+            -\frac{1}{2} - i\frac{\sqrt3}{2} \\
+            -\frac{1}{2} + i\frac{\sqrt3}{2}
+        \end{bmatrix} = \frac{1}{2}\begin{bmatrix}
+            2 \\
+            -1 \\
+            -1
+        \end{bmatrix} - i\frac{\sqrt{3}}{2}\begin{bmatrix}
+            0 \\
+            1 \\
+            -1
+        \end{bmatrix}$
+\end{enumerate}
+Z wektorów rzeczywistych $x_1 = \frac{1}{2}\begin{bmatrix}
+            2 \\
+            -1 \\
+            -1
+        \end{bmatrix}, \ y_1 = \frac{\sqrt{3}}{2}\begin{bmatrix}
+            0 \\
+            1 \\
+            -1
+        \end{bmatrix}, \ x_2 = \begin{bmatrix}
+            1 \\
+            1 \\
+            1
+        \end{bmatrix}$ po normalizacji możemy utworzyć bazę ortonormalną (Wzory \ref{eq:real_base}).
+Więc zgodnie z formą normalną \eqref{eq:orthogonal_matrix_normal_form} macierz $O$ jest ortogonalnie podobna do postaci klatkowo-diagonalnej z jednym blokiem obrotu (odpowiadającym parze zespolonej) oraz jednym blokiem $1\times1$ równym $1$ (odpowiadającym wartości rzeczywistej):
+$$O = O_1\begin{Bmatrix}\cblock{-\frac12}{\frac{\sqrt3}{2}}, & 1\end{Bmatrix}O_1^{-1}, \quad (O_1^T = O_1^{-1}).$$
+Klatka obrotu odpowiada obrotowi o kąt $\varphi = \frac{2\pi}{3}$ w płaszczyźnie $\mathrm{lin}(x_1, y_1)$, natomiast wektor odpowiadający wartości własnej $1$ jest osią tego obrotu, w tym przypadku jest to kierunek $x_2 = (1,1,1)$.
+\end{example}
+
+W dalszej części pracy zajmiemy się macierzami zespolonymi symetrycznymi, antysymetrycznymi, ortogonalnymi i ich formami normalnymi. Dla tych macierzy już nie możemy tak łatwo skorzystać z Twierdzenia Spektralnego, ponieważ nie spełniają warunku normalności względem sprzężenia hermitowskiego $A^TA=AA^T$, natomiast spełniają analogiczny warunek zdefiniowany przez transpozycję, tak jak w przypadku rzeczywistym. Dla macierzy zespolonej symetrycznej warunek jest:
+$$ S = S^T$$
+Dla macierzy zespolonej antysymetrycznej:
+$$ K = -K^T$$
+Dla macierzy zespolonej ortogonalnej:
+$$ O^*O = I$$
+W każdym przypadku występuje więc operacja transpozycji, a nie sprzężenia hermitowskiego.
+
+Co więcej, w przeciwieństwie do przypadku rzeczywistego, sama symetria macierzy zespolonej $S = S^T$ nie gwarantuje już diagonalizowalności. Rozważmy macierz
+$$ S = \begin{pmatrix} i & 1 \\ 1 & -i \end{pmatrix}, $$
+która jest symetryczna, gdyż $S = S^T$. Jej wielomian charakterystyczny wynosi $\det(S - \lambda I) = \lambda^2$, więc jedyną wartością własną jest $\lambda = 0$ z krotnością algebraiczną $2$. Rozwiązując układ $Sv = 0$ otrzymujemy $iv_1 + v_2 = 0$, więc przestrzeń własna dla $\lambda = 0$ jest jednowymiarowa, rozpięta przez wektor $(1, -i)$. Ponieważ krotność geometryczna ($1$) jest mniejsza od krotności algebraicznej ($2$), nie istnieją dwa liniowo niezależne wektory własne, a zatem $S$ nie jest podobna do żadnej macierzy diagonalnej, niezależnie od wyboru bazy. Więc symetria macierzy zespolonej nie gwarantuje diagonalizowalności.
+
+Oznacza to, że struktura tych macierzy jest inna niż w przypadku macierzy hermitowskich, unitarnych lub macierzy rzeczywistych i wymaga zastosowania odmiennych narzędzi. Dla znalezienia form normalnych będziemy korzystać z formy normalnej Jordana oraz teorii dzielników elementarnych, co i przedstawimy w następnym rozdziale.
