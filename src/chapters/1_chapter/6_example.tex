@@ -71,8 +71,13 @@ Dla macierzy zespolonej ortogonalnej:
 $$ O^*O = I$$
 W każdym przypadku występuje więc operacja transpozycji, a nie sprzężenia hermitowskiego.
 
-Co więcej, w przeciwieństwie do przypadku rzeczywistego, sama symetria macierzy zespolonej $S = S^T$ nie gwarantuje już diagonalizowalności. Rozważmy macierz
+Co więcej, w przeciwieństwie do przypadku rzeczywistego, sama symetria macierzy zespolonej $S = S^T$ nie gwarantuje już diagonalizowalności. Rozważmy macierz nilpotentną:
 $$ S = \begin{pmatrix} i & 1 \\ 1 & -i \end{pmatrix}, $$
-która jest symetryczna, gdyż $S = S^T$. Jej wielomian charakterystyczny wynosi $\det(S - \lambda I) = \lambda^2$, więc jedyną wartością własną jest $\lambda = 0$ z krotnością algebraiczną $2$. Rozwiązując układ $Sv = 0$ otrzymujemy $iv_1 + v_2 = 0$, więc przestrzeń własna dla $\lambda = 0$ jest jednowymiarowa, rozpięta przez wektor $(1, -i)$. Ponieważ krotność geometryczna ($1$) jest mniejsza od krotności algebraicznej ($2$), nie istnieją dwa liniowo niezależne wektory własne, a zatem $S$ nie jest podobna do żadnej macierzy diagonalnej, niezależnie od wyboru bazy. Więc symetria macierzy zespolonej nie gwarantuje diagonalizowalności.
+która jest symetryczna, gdyż $S = S^T$. Jej wielomian charakterystyczny wynosi $\det(S - \lambda I) = \lambda^2$, więc jedyną wartością własną jest $\lambda = 0$ z krotnością algebraiczną $2$. Rozwiązując układ $Sv = 0$ otrzymujemy: 
+$$\begin{cases}
+    iv_1 + v_2 = 0 \\
+    v_1 - iv_2 = 0
+\end{cases} \implies iv_1 + v_2 = 0$$
+więc przestrzeń własna dla $\lambda = 0$ jest jednowymiarowa, rozpięta przez wektor $(1, -i)$. Ponieważ krotność geometryczna ($1$) jest mniejsza od krotności algebraicznej ($2$), nie istnieją dwa liniowo niezależne wektory własne i nie możemy stworzyć bazę ortonormalną, co jest kluczowym krokiem dla zastosowania twierdzenia Spektralnego, a zatem $S$ nie jest podobna do żadnej macierzy diagonalnej, niezależnie od wyboru bazy. Więc symetria macierzy zespolonej nie gwarantuje diagonalizowalności.
 
 Oznacza to, że struktura tych macierzy jest inna niż w przypadku macierzy hermitowskich, unitarnych lub macierzy rzeczywistych i wymaga zastosowania odmiennych narzędzi. Dla znalezienia form normalnych będziemy korzystać z formy normalnej Jordana oraz teorii dzielników elementarnych, co i przedstawimy w następnym rozdziale.
