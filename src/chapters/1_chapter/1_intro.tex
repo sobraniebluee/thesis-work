@@ -93,11 +93,49 @@ Dla bazy ortonormalnej:
 \
 
 \begin{definition}
+    Sprzężeniem hermitowskim macierzy $A$ nazywamy macierz powstałą przez złożenie transpozycji oraz sprzężenia zespolonego elementów, i oznaczamy jako:
+    $$ A^* = \overline{A^T} $$ 
+\end{definition}
+
+\begin{definition}
+    Macierzą hermitowską będziemy nazywać taką macierz $H$, która spełnia warunek:
+    $$H = H^*$$
+\end{definition}
+
+\begin{definition}
+    Macierzą symetryczną będziemy nazywać taką macierz $S$, która spełnia warunek:
+    $$S = S^T$$
+\end{definition}
+
+\begin{definition}
+    Macierzą antysymetryczną będziemy nazywać taką macierz $K$, która spełnia warunek:
+    $$K = -K^T$$
+\end{definition}
+
+\begin{definition}
+    Macierzą unitarną będziemy nazywać taką macierz $U$, która spełnia warunek:
+    $$U^*U = UU^* = I,$$
+    gdzie $I$ macierz identycznościowa.
+\end{definition}
+
+\begin{definition}
+    Macierzą ortogonalną będziemy nazywać taką macierz $O$, która spełnia warunek:
+    $$O^TO = OO^T = I,$$
+    gdzie $I$ macierz identycznościowa.
+\end{definition}
+
+\begin{definition}
 Odwzorowanie $A \colon X \to Y $, gdzie $X$ i $Y$ są przestrzeniami liniowymi nad ciałem liczb $\K$, nazywa się \textbf{operatorem liniowym} jeżeli spełnia następujące warunki dla dowolnych dwóch wektorów $x, y \in X$ oraz dowolnego skalara $a \in \K$:
 \begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
     \item $A(x + y) = A(x) + A(y)$ (zachowuje dodawanie wektorów)
     \item $A(ax) = aA(x)$ (zachowuje mnożenie przez skalar)
 \end{enumerate}
+\end{definition}
+
+\begin{definition}[Wartość i wektor własny]
+    Niech $V$ będzie przestrzenią liniową nad ciałem liczb $\K$, oraz $A \colon V \to V$ jest operatorem liniowym, który odwzorowuje przestrzeń $V$ samą w siebie. Jeśli istnieje taki niezerowy wektor $v \in V$ dla którego jest spełniony warunek:
+    $$ Av = \lambda v,$$
+    gdzie $\lambda \in \K$ pewien skalar, to $v$ nazywa się \textit{wektorem własnym} oraz $\lambda$ nazywa się \textit{wartością własną} przekształcenia $A$.
 \end{definition}
 
 Jeśli przestrzenie liniowe $X$ i $Y$ mają skończony wymiar $\dim X = n$, $\dim Y = m$, oraz ustalimy w $X$ bazę $\mathbf{e}_1, \ldots, \mathbf{e}_n$, a w $Y$ bazę $\mathbf{g}_1, \ldots, \mathbf{g}_m$, to odwzorowaniu liniowemu $A$ odpowiada macierz $m \times n$ w następującym sensie: jeżeli wektorowi $\mathbf{x} = \sum_{i=1}^{n} x_i \mathbf{e}_i \in X$ operator $A$ przyporządkowuje wektor $\mathbf{y} = \sum_{i=1}^{m} y_i \mathbf{g}_i \in Y$, to współrzędne tych wektorów są związane wzorem $\mathbf{y} = A\mathbf{x}.$
