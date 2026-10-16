@@ -61,9 +61,33 @@ W szczególności:
 \end{equation}
 gdzie z \eqref{eq:def_h} oraz własności (1), wynika, że $h_{ik} = \bar{h}_{ki}$.
 
-% TODO: Potrzebujemy to dodać formę hermitowską?
+W ten sposób zdefiniowaliśmy iloczyn skalarny dla bazy $\textbf{e}_1, \ldots, \textbf{e}_n$. 
 
-W ten sposób zdefiniowaliśmy iloczyn skalarny dla bazy $\textbf{e}_1, \ldots, \textbf{e}_n$. Ponadto jeżeli baza $\textbf{e}_1, \ldots, \textbf{e}_n$ jest ortonormalna, to znaczy taka, że każdy wektor bazy jest ortogonalny do pozostałych oraz ma normę jeden:
+\begin{definition}
+    Układ wektorów ($x_1, \ldots, x_n$) który spełnia:
+    $$ a_1x_1 + a_2x_2 + \ldots + a_nx_n = 0 \iff a_1 = a_2 = \ldots = a_n = 0$$
+    będziemy nazywać liniowo niezależnym, tj. żaden z wektorów nie jest kombinacją liniową wektorów pozostałych.
+\end{definition}
+\begin{definition}
+    Dwa wektory $x, y \in V$ będziemy nazywać ortogonalnymi lub prostopadłymi jeśli $\inner{x}{y} = 0$, piszemy wówczas $x \perp y$.
+\end{definition}
+\begin{definition}
+    Układ wektorów ($x_1, \ldots, x_n$) w przestrzeni unitarnej $V$ będziemy nazywać ortogonalnym jeśli $x_i \perp x_j$ dla $i \ne j$, gdzie $i,j = (1, \ldots, n)$.
+\end{definition}
+\begin{theorem}
+    Jeśli układ wektorów ($x_1, \ldots, x_n$) jest ortogonalny, to jest liniowo niezależny.
+\end{theorem}
+\begin{proof}
+    Załóżmy że:
+    $$ a_1x_1 + \ldots + a_nx_n = 0$$
+    Wymnożomy obustronie przez dowolny $x_k$, gdzie $k = (1, \ldots, n)$:
+    $$ \inner{a_1x_1 + \ldots + a_nx_n}{x_k} = \inner{a_1x_1}{x_k} + \ldots + \inner{a_nx_n}{x_k} = \sum_{i=1}^{n}{\inner{a_ix_i}{x_k}} = 0 $$
+    Ponieważ każdy wektor wśród ($x_1, \ldots, x_n$) jest ortogonalny:
+    $$ \sum_{i=1}^{n}{\inner{a_ix_i}{x_k}} = \sum_{i=1}^{n}{a_i\inner{x_i}{x_k}} = \inner{a_kx_k}{x_k} = a_k\inner{x_k}{x_k} = a_k\norm{x_k}^2 = 0 $$
+    Ponieważ $\norm{x_k}^2 > 0$, więc $a_k = 0$.
+\end{proof}
+
+Jeżeli baza $\textbf{e}_1, \ldots, \textbf{e}_n$ jest ortonormalna, to znaczy taka, że każdy wektor bazy jest ortogonalny do pozostałych oraz ma normę jeden:
 \begin{equation}\label{eq:def_ortonormal_base}
     \inner{\textbf{e}_i}{\textbf{e}_k} = \delta_{ik} = \begin{cases}
     0, \text{ dla } i \neq k \\

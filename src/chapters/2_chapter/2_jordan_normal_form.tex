@@ -1,0 +1,91 @@
+\section{Postać Jordana}
+
+Niech $A$ macierz kwadratowa $n \times n$ nad ciałem liczb $\K$, które zawiera wszystkie wartości własne $ \lambda_1, \lambda_2, \ldots, \lambda_n$ macierzy $A$. Z macierzy charakterystycznej $\lambda I - A$ możemy wypisać wszystkie wielomiany niezmiennicze macierzy $A$:
+$$ i_{n}(\lambda) = \frac{D_{n}(\lambda)}{D_{n-1}(\lambda)}, \ i_{n-1}(\lambda) = \frac{D_{n-1}(\lambda)}{D_{n-2}(\lambda)}, \
+\ldots, \ i_{1}(\lambda) = \frac{D_{1}(\lambda)}{D_{0}(\lambda)} = D_{1}(\lambda) $$
+Jeśli sprowadzimy je na czynniki nierozkładalne zachowując wykładniki, otrzymamy następujący ciąg dzielników elementarnych:
+\begin{equation}\label{eq:elementary_divisors}
+(\lambda - \lambda_1)^{p_1}, \ (\lambda - \lambda_2)^{p_2}, \ldots, (\lambda - \lambda_u)^{p_u} \quad (p_1 + p_2 + \ldots + p_u = n)
+\end{equation}
+gdzie $n$ jest największą potęgą wielomiana $D_n(\lambda)$ oraz $u \in \N$, taka że $u \leq n$, jest ilością dzielników elementarnych. Zauważmy, że wśród liczb $\lambda_1, \lambda_2, \ldots, \lambda_u$ mogą być równe sobie.
+
+Rozważmy przykładowy dzielnik elementarny:
+$$ (\lambda - \lambda_0)^{p} $$
+Niech powyższemu elementarnemu dzielniku odpowiada następująca macierz:
+\begin{equation}\label{eq:jordan_cell}
+    \begin{bmatrix} 
+    \lambda_{0} & 1 & 0 & \dots & 0 \\
+    0 & \lambda_{0} & 1 & \dots & 0 \\
+    \dots & \dots & \dots & \dots & \dots \\
+    0 & 0 & 0 & \dots & 1 \\
+    0 & 0 & 0 & \dots & \lambda_{0} 
+    \end{bmatrix} = \lambda_0I^{(p)} + H^{(p)}
+\end{equation}
+gdzie $H$ jest macierzą, która ma jedynki na nadprzekątnej, a w innych miejscach zera, a $p$ oznacza wymiar macierzy $H^{(p)}$ oraz $I^{(p)}$.
+Łatwo możemy sprawdzić, że macierz \eqref{eq:jordan_cell} rzeczywiście ma tylko jeden dzielnik elementarny $ (\lambda - \lambda_0)^{p} $:
+
+Macierz \eqref{eq:jordan_cell} ma następującą macierz charakterystyczną:
+\begin{equation}\label{eq:jordan_cell_characteristic}
+\begin{bmatrix} 
+    \lambda - \lambda_{0} & -1 & 0 & \dots & 0 \\
+    0 & \lambda - \lambda_{0} & -1 & \dots & 0 \\
+    \dots & \dots & \dots & \dots & \dots \\
+    0 & 0 & 0 & \dots & -1 \\
+    0 & 0 & 0 & \dots & \lambda - \lambda_{0} 
+\end{bmatrix} = \lambda I^{(p)} - (\lambda_0I^{(p)} + H^{(p)})
+\end{equation}
+Główny minor można znaleźć za pomocą rozwinięcia Laplace'a według pierwszej kolumny, gdzie mamy wszystkie zera, oprócz pierwszego elementu $\lambda - \lambda_{0}$:
+$$ \det M_p = (-1)^{(1 + 1)}(\lambda - \lambda_0)\det M^{(p - 1)}_{(1,1)}= (\lambda - \lambda_0) \det M^{(p - 1)}_{(1,1)},$$
+gdzie $\det M^{(p - 1)}_{(1,1)}$ wyznacznik macierzy $p-1$ stopnia powstały z macierzy \eqref{eq:jordan_cell_characteristic} po skreśleniu pierwszego wierszu oraz kolumny. Wtedy otrzymamy taką samą macierz jak i \eqref{eq:jordan_cell_characteristic} tylko o stopień mniejszą. Więc wyznacznik $\det M^{(p - 1)}_{(1,1)}$ możemy policzyć jako:
+$$ \det M^{(p - 1)}_{(1,1)} = (\lambda - \lambda_0)\det M^{(p - 2)}_{(1,1)}, $$
+gdzie $\det M^{(p - 2)}_{(1,1)}$ wyznacznik z macierzy $p-2$ stopnia powstały z macierzy $M^{(p - 1)}_{(1,1)}$ po skreśleniu pierwszego wierszu oraz kolumny. Kontynuując ten proces otrzymamy, że:
+$$ \det M_p = (\lambda - \lambda_0) \times \ldots \times (\lambda - \lambda_0) = (\lambda - \lambda_0)^p $$
+Z definicji $\det M_p$ jest największym wspólnym dzielnikiem macierzy \eqref{eq:jordan_cell_characteristic}. Największy wspólny dzielnik $D_{p-1}(\lambda)$ minorów $p - 1$ rzędu jest jeden, ponieważ zawsze możemy wybrać minor $p-1$ stopnia który będzie mieć $-1$ na przekątnej, skreślając ostatni wiersz i pierwszą kolumnę, a więc wyznacznik będzie równać się $\pm 1$, stąd $D_{p-1}(\lambda) = 1$. Ponieważ $D_{p-1}(\lambda) = 1$, to z definicji, wszystkie pozostałe największe wspólne dzielniki minorów rzędu $k < p - 1$ muszą wynosić jeden. Mamy następujący ciąg wielomianów niezmienniczych:
+$$ i_p(\lambda) = \frac{D_{p}(\lambda)}{D_{p - 1}(\lambda)} = (\lambda - \lambda_0)^p, \  i_{p - 1}(\lambda) = 1, \ \ldots, \ \ i_{1}(\lambda) = 1 $$
+A więc, rzeczywiście, jedyny dzielnik elementarny to $(\lambda - \lambda_0)^p$.
+
+Macierz \eqref{eq:jordan_cell} $\lambda_0I^{(p)} + H^{(p)}$ będziemy nazywać \textit{klatką Jordana} odpowiadającą dzielniku elementarnemu $(\lambda - \lambda_0)^p$.
+
+Klatki Jordana odpowiadające dzielnikom elementarnynm \eqref{eq:elementary_divisors}, oznaczmy jako:
+$$ J_1, J_2, \ldots, J_u .$$
+Wtedy macierz klatkowo-diagonalna:
+$$ J = \{ J_1, J_2, \ldots, J_u \}$$
+odpowiadają dzielniki elementarne \eqref{eq:elementary_divisors}.
+Macierz $J$ możemy zapisać jako:
+$$ J = \{ \lambda_1 I_1 + H_1, \lambda_2 I_2 + H_2, \ldots, \lambda_u I_u + H_u  \}, $$
+gdzie:
+$$ I_k = I^{(p_k)}, \ H_k = H^{(p_k)} \quad (k = 1, \ldots, u). $$ 
+% Tu korzystamy z Twierdzenia 5, strona 140
+Macierzy $A$ oraz $J$ mają jednakowe dzielniki elementarne, więc na mocy Twierdzenia~\ref{theorem:gantmacher_similarity}, są podobne, to znaczy istnieje taka macierz nieosobliwa $T \ (|T| \neq 0)$, że:
+$$ A = TJT^{-1} = T\{ \lambda_1 I_1 + H_1, \lambda_2 I_2 + H_2, \ldots, \lambda_u I_u + H_u  \}T^{-1} $$
+Macierz $J$ będziemy nazywać \textit{normalną postacią Jordana} lub po prostu \textit{postacią Jordana}.
+\begin{example}
+    Przykład postaci Jordana dla następujących dzielników elementarnych $(\lambda - \lambda_1)^2, (\lambda - \lambda_2)^3, \lambda - \lambda_3, (\lambda - \lambda_4)^2$:
+\begin{equation}
+    J = 
+\begin{tikzpicture}[baseline=(m-4-4.center)]
+\matrix (m) [matrix of math nodes,
+    left delimiter={(}, right delimiter={)},
+    nodes={minimum width=1.4em, minimum height=1.4em, anchor=center},
+    column sep=0.4em, row sep=0.4em]
+{
+\lambda_1 & 1        & 0        & 0        & 0        & 0        & 0        & 0 \\
+0         & \lambda_1& 0        & 0        & 0        & 0        & 0        & 0 \\
+0         & 0        & \lambda_2& 1        & 0        & 0        & 0        & 0 \\
+0         & 0        & 0        & \lambda_2& 1        & 0        & 0        & 0 \\
+0         & 0        & 0        & 0        & \lambda_2& 0        & 0        & 0 \\
+0         & 0        & 0        & 0        & 0        & \lambda_3& 0        & 0 \\
+0         & 0        & 0        & 0        & 0        & 0        & \lambda_4& 1 \\
+0         & 0        & 0        & 0        & 0        & 0        & 0        & \lambda_4 \\
+};
+
+\draw[thick, black]        (m-1-1.north west) rectangle (m-2-2.south east);
+\draw[thick, black]       (m-3-3.north west) rectangle (m-5-5.south east);
+\draw[thick, black] (m-6-6.north west) rectangle (m-6-6.south east);
+\draw[thick, black]     (m-7-7.north west) rectangle (m-8-8.south east);
+\end{tikzpicture}
+\end{equation}
+\end{example}
+
+Jeśli wszystkie dzielniki elementarne macierzy $A$ mają wykładnik jeden, to tylko w tym przypadku macierz Jordana jest diagonalna:
+$$ A = T\{\lambda_1, \lambda_2, \ldots, \lambda_u\}T^{-1}.$$

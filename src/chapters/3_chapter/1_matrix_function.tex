@@ -1,0 +1,254 @@
+\chapter{Formy normalne macierzy zespolonych}
+
+W niniejszym rozdziale zajmiemy się formami normalnymi macierzy zespolonych. Głównym celem jest przedstawienie macierzy za pomocą prostszych postaci, które pozwalają lepiej zrozumieć ich strukturę oraz własności.
+
+Przed sformułowaniem twierdzeń dotyczących postaci normalnych macierzy zespolonych musimy omówić funkcję od macierzy oraz wielomian interpolacyjny Lagrange'a--Sylwestra, a także udowodnić kilka twierdzeń dotyczących rozkładu biegunowego. Pojęcia te będą nam potrzebne w dalszych rozważaniach i dowodach.
+
+\section{Funkcja od macierzy i wielomian Lagrange'a--Sylwestra}
+W tym podrozdziale spróbujemy zdefiniować, czym jest funkcja od macierzy $f(A)$, gdzie $A$ jest macierzą kwadratową wymiaru $n \times n$. Dalej w podrozdziale, wszędzie gdzie piszemy $A$, zakładamy, że jest to macierz kwadratowa wymiaru $n \times n$, jeśli nie powiedziano inaczej.
+
+Najprostszym przypadkiem funkcji od macierzy jest wielomian od macierzy:
+\begin{definition}[Wielomian od macierzy]
+    Niech $A$ będzie macierzą kwadratową wymiarów $n \times n$, a $f(\lambda)$ dowolnym wielomianem $l$-tego stopnia zmiennej $\lambda \in \C$:
+    $$f(\lambda) = a_0\lambda^{l} + a_1\lambda^{l - 1} + \ldots + a_{l - 1}\lambda + a_l, \quad l \in \N, \ a_i \in \C$$
+    Wtedy $f(A)$ jest \textit{wielomianem od macierzy}:
+    $$f(A) = a_0A^{l} + a_1A^{l - 1} + \ldots + a_{l - 1}A + a_lI, \quad l \in \N, \ a_i \in \C$$
+\end{definition}
+W dalszym ciągu spróbujemy sformułować postać ogólną funkcji od macierzy $f(A)$, ale najpierw podamy kilka definicji oraz twierdzeń. 
+\begin{definition}\label{def:matrix_spectrum}
+    Spektrum macierzy $A$ nazywamy zbiór wszystkich wartości własnych danej macierzy i oznaczamy przez $\Lambda_{A}$.
+\end{definition}
+
+\begin{definition}[Wielomian zerujący]
+     Wielomianem zerującym macierzy $A$ będziemy nazywać taki wielomian $g(\lambda)$, dla którego zachodzi:
+     $$g(A) = 0$$
+\end{definition}
+Na mocy Twierdzenia Cayleya--Hamiltona \cite[Rozdział IV, \S 4, str. 83]{gantmacher2000} wielomian charakterystyczny macierzy $A$ jest wielomianem zerującym.
+\begin{definition}[Wielomian minimalny]
+    Wielomian zerujący o najniższym stopniu i współczynniku wiodącym równym 1 będziemy nazywać \textit{wielomianem minimalnym}.
+\end{definition}
+\begin{theorem}[O wielomianie zerującym]\label{theorem:annihilating_polynomial}
+    Dowolny wielomian zerujący jest podzielny przez wielomian minimalny.
+\end{theorem}
+\begin{proof}
+Niech dana będzie macierz kwadratowa $A$ oraz niech $f(\lambda)$ będzie dowolnym wielomianem zerującym macierzy $A$ (tzn. $f(A) = 0$). Podzielmy $f(\lambda)$ przez wielomian minimalny $\psi(\lambda)$:
+$$ f(\lambda) = \psi(\lambda)q(\lambda) + r(\lambda) $$
+Z tego wynika:
+$$ f(A) = \psi(A)q(A) + r(A) $$
+Jak wiemy, $\psi(A) = 0$ oraz $f(A) = 0$:
+$$ f(A) = r(A) \implies r(A) = 0 $$
+Stopień $r(\lambda)$ jest mniejszy od stopnia wielomianu minimalnego, więc $r(\lambda) \equiv 0$, ponieważ w przeciwnym przypadku wielomian $r(\lambda)$ byłby wielomianem zerującym o mniejszym stopniu niż wielomian minimalny, co daje sprzeczność.
+Zatem reszta jest zawsze zerowa, $r(\lambda) \equiv 0$:
+$$f(\lambda) = \psi(\lambda)q(\lambda) \implies \psi(\lambda) \mid f(\lambda)$$
+\end{proof}
+
+
+Odnotujmy ważną własność wiążącą wielomian charakterystyczny oraz minimalny:
+Niech $\varphi(\lambda)$ wielomian charakterystyczny macierzy $A$ oraz $\psi(\lambda)$ jest wielomianem minimalnym. 
+
+Z Twierdzenia Cayleya--Hamiltona oraz Twierdzenia~\ref{theorem:annihilating_polynomial} (\textit{O wielomianie zerującym}) wynika, że wielomian charakterystyczny jest podzielny przez wielomian minimalny, więc ma co najmniej tyle samo różnych pierwiastków co wielomian minimalny:
+$$ \varphi(\lambda) = \psi(\lambda)c(\lambda), $$
+gdzie $c(\lambda)$ pewien wielomian od $\lambda$. A wielomian minimalny $\psi(\lambda)$ zeruje się dla każdego pierwiastka $\varphi(\lambda)$, tj. dla każdej wartości własnej. Weźmy dowolny wektor własny i wartość własną:
+$$ Ax = \lambda x \implies \psi(A)x = \psi(\lambda)x \implies 0 = \psi(\lambda)x$$
+% TODO: dowód że możemy pomnożyć na \psi
+Ponieważ $x \ne 0$:
+$$0 = \psi(\lambda)x \implies \psi(\lambda) = 0$$
+Jak widzimy, rzeczywiście, wielomian minimalny zeruje się dla każdego pierwiastka wielomianu charakterystycznego, a więc różnica między wielomianem minimalnym i charakterystycznym jest tylko w krotności pierwiastków. Podsumujmy:
+
+Wielomian minimalny $\psi(\lambda)$ ma te same różne pierwiastki co wielomian charakterystyczny, tj. wszystkie wartości własne macierzy $A$.
+Jeśli:
+\begin{equation}
+   (\text{w. charakter.}) \quad 
+   \varphi(\lambda) = (\lambda - \lambda_1)^{n_1}(\lambda - \lambda_2)^{n_2}\ldots(\lambda - \lambda_s)^{n_s}, \quad \sum_{k=1}^{s}{n_k} = n 
+\end{equation}
+to:
+\begin{equation}\label{eq:minimal_poly}
+    (\text{w. minimalny}) \quad 
+    \psi(\lambda) = (\lambda - \lambda_1)^{m_1}(\lambda - \lambda_2)^{m_2}\ldots(\lambda - \lambda_s)^{m_s}, \quad \sum_{k=1}^{s}{m_k} = m
+\end{equation}
+gdzie $\lambda_1, \ldots, \lambda_s$ wszystkie różne wartości własne $A$, liczba $n_k$ reprezentuje krotność wartości własnej oraz $0 < m_k \le n_k \implies m \le n$.
+
+\begin{definition}\label{def:function_on_spectrum}
+    Niech $A$ będzie macierzą kwadratową, która ma następujące wartości własne:
+    $$ \lambda^{(m_1)}_1, \ \lambda^{(m_2)}_2, \ \ldots, \ \lambda^{(m_s)}_s \quad (s = 1, 2, \ldots, n) $$
+    gdzie $m_1, \ldots, m_s$ są wykładnikami wielomiana minimalnego \eqref{eq:minimal_poly}.
+
+    Następujące liczby:
+    \begin{equation}\label{values_on_spectrum}
+        f(\lambda_{k}), \ f'(\lambda_{k}), \ \ldots, \ f^{(m_k - 1)}(\lambda_{k}) \quad (k = 1, 2, \ldots, s)
+    \end{equation}
+    będziemy nazywać wartościami na \textit{spektrum macierzy} $A$, a zbiór tych wartości będziemy oznaczać jako $f(\Lambda_{A})$. Jeśli dla funkcji $f(\lambda)$ istnieją wartości \eqref{values_on_spectrum}, to będziemy mówić, że funkcja jest zdefiniowana na spektrum macierzy.
+\end{definition}
+
+\begin{definition}[Wielomian Lagrange'a--Sylwestra]
+    Niech $A$ będzie macierzą kwadratową, która ma następujący wielomian minimalny:
+    $$ \psi(\lambda) = (\lambda - \lambda_1)^{m_1}(\lambda - \lambda_2)^{m_2}\ldots(\lambda - \lambda_s)^{m_s}, \quad \sum_{k=1}^{s}{m_k} = m$$
+    gdzie $\lambda_1, \ldots, \lambda_s$ są wartościami własnymi $A$, liczba $m_k$ reprezentuje krotność czynnika w wielomianie minimalnym oraz $m \le n$.
+
+    Niech dana będzie funkcja $f(\lambda)$ zdefiniowana na spektrum macierzy $A$, wtedy wielomianem Lagrange'a--Sylwestra będziemy nazywać jedyny wielomian interpolacyjny $r(\lambda)$ stopnia $< m$, który spełnia warunki:
+    $$ f(\lambda_k) = r(\lambda_k), \ f'(\lambda_k) = r'(\lambda_k), \ \ldots, \ f^{(m_k - 1)}(\lambda_k) = r^{(m_k - 1)}(\lambda_k), \quad (k = 1, \ldots, s) $$
+    Czyli $f(\lambda)$ i $r(\lambda)$ mają te same wartości oraz te same pochodne do rzędu $(m_k - 1)$ w każdym punkcie $\lambda_k$.
+\end{definition}
+\begin{theorem}\label{theorem:exist_L_S_poly}
+Wielomian Lagrange'a--Sylwestra zawsze istnieje i jest jednoznacznie określony dla $f(\lambda)$.
+\end{theorem}
+\begin{proof}
+Dowód pomijamy. Pełne uzasadnienie istnienia i jednoznaczności wielomianu Lagrange'a--Sylwestra można znaleźć w \cite[Rozdział V, \S 2, str. 103]{gantmacher2000}.
+\end{proof}
+% TODO: Pokazać, jak wygląda
+\begin{theorem}
+    Niech $A$ będzie macierzą kwadratową. Wszystkie wielomiany $g(\lambda)$, które mają te same wartości na spektrum macierzy $A$, mają tę samą wartość $g(A)$, tzn. jeśli dla dowolnych wielomianów $g_1(\lambda), \ldots, g_p(\lambda)$ zachodzi $g_1(\Lambda_{A}) = g_2(\Lambda_{A}) = \ldots = g_p(\Lambda_{A})$, to $g_1(A) = g_2(A) = \ldots = g_p(A)$.
+\end{theorem}
+\begin{proof}
+    Oznaczmy przez $\psi(\lambda)$ wielomian minimalny macierzy $A$:
+    \begin{equation}\label{eq:local_min_poly}
+        \psi(\lambda) = (\lambda - \lambda_1)^{m_1}(\lambda - \lambda_2)^{m_2}\ldots(\lambda - \lambda_s)^{m_s}, \quad \sum_{k=1}^{s}{m_k} = m
+    \end{equation}
+    gdzie $\lambda_1, \ldots, \lambda_s$ są wszystkimi różnymi wartościami własnymi macierzy $A$, a $m$ jest stopniem wielomianu $\psi(\lambda)$ ($m \le n$).
+    Niech $g(\lambda)$ i $h(\lambda)$ będą dowolnymi wielomianami takimi, że:
+    \begin{equation}\label{eq:local_first_step}
+        g(A) = h(A)
+    \end{equation}
+    Wtedy różnica $d(\lambda) = g(\lambda) - h(\lambda)$ jest wielomianem zerującym dla macierzy $A$ oraz na mocy Twierdzenia~\ref{theorem:annihilating_polynomial} (\textit{O wielomianie zerującym}) jest podzielny przez wielomian minimalny $\psi(\lambda)$. Stąd wynika, że wielomian $d(\lambda)$ ma co najmniej te same miejsca zerowe co $\psi(\lambda)$, w tym przypadku są to wartości własne. Możemy to łatwo sprawdzić, podstawiając dowolną wartość własną $\lambda_k$ do $d(\lambda)$, zawsze jakiś składnik z \eqref{eq:local_min_poly} wyzeruje się: $(\lambda - \lambda_k)^{m_k} = 0$.
+    
+    Tak samo jest w przypadku poszczególnych pochodnych $d'(\lambda), \ \ldots, \ d^{(m_k - 1)}(\lambda)$ do $m_k - 1$ rzędu, gdzie $k = 1, \ldots, s$, ponieważ każdy składnik $(\lambda - \lambda_k)^{m_k}$ możemy zróżniczkować $m_k - 1$ razy, nie sprowadzając tego składnika do stałej, więc $d'(\lambda), \ \ldots, \ d^{(m_k - 1)}(\lambda)$ będą zerować się dla każdej wartości własnej. Zapiszmy to jako:
+    \begin{equation}\label{eq:local_second_step}
+        d(\lambda_k) = 0, \ d'(\lambda_k) = 0, \ \ldots, \ d^{(m_k - 1)}(\lambda_k) = 0, \quad (k = 1, \ldots, s)
+    \end{equation}
+    Ponieważ różniczkowanie jest liniowe, możemy to przepisać jako:
+    \begin{equation}\label{eq:local_third_step}
+        g(\lambda_k) = h(\lambda_k), \ g'(\lambda_k) = h'(\lambda_k), \ \ldots, \ g^{(m_k - 1)}(\lambda_k) = h^{(m_k - 1)}(\lambda_k), \quad (k = 1, \ldots, s)
+    \end{equation}
+    Jak widzimy, wielomiany $g(\lambda)$ i $h(\lambda)$ przyjmują jednakowe wartości na spektrum macierzy $A$. 
+    
+    Zauważmy, że rozumowanie to działa w obie strony: z \eqref{eq:local_third_step} wynika \eqref{eq:local_second_step}, co jest oczywiste. Z \eqref{eq:local_second_step} możemy wyprowadzić \eqref{eq:local_first_step}: 
+    Wielomian $d(\lambda)$ ma w każdym z punktów $\lambda_k$ zero o krotności co najmniej $m_k$ (tak jak wielomian minimalny $\psi(\lambda)$), więc $\psi(\lambda)$ dzieli $d(\lambda)$. Z tego wynika, że $d(\lambda)$ jest wielomianem zerującym dla $A$, wtedy:
+$$d(A) = 0 \implies g(A) - h(A) = 0 \implies g(A) = h(A).$$
+
+    Zatem wielomiany, które przyjmują jednakowe wartości na spektrum macierzy, mają jednakową wartość macierzową $g(A)$.
+\end{proof}
+Zdefiniujmy funkcję $f(A)$ analogicznie do powyższego twierdzenia, tzn. wszystkie funkcje $f(\lambda)$, które mają te same wartości na spektrum macierzy $A$, mają tę samą wartość $f(A)$.
+
+Wtedy jest oczywiste, że dla definicji $f(A)$ możemy znaleźć wielomian $g(\lambda)$, który miałby te same wartości na spektrum macierzy $A$ co $f(\lambda)$, i przyjąć, że:
+$$f(A) := g(A)$$
+Na mocy Twierdzenia~\ref{theorem:exist_L_S_poly} wiemy, że wśród wszystkich tych wielomianów istnieje jeden i tylko jeden wielomian stopnia mniejszego od $m$, który jest wielomianem Lagrange'a--Sylwestra.
+% Wyjaśnienie: Stopień jest mniejszy od $m$ ponieważ wyżej zdefiniowaliśmy $g$ dla wielomianu minimalnego ze stopniem $m$, a ponieważ L-S jest definiowany dla (m - 1) pochodnych, to musi być ostro mniejszy  
+
+Otrzymujemy zatem następującą definicję funkcji od macierzy:
+\begin{definition}[Funkcja od macierzy]
+    Niech $f(\lambda)$ będzie funkcją zdefiniowaną na spektrum macierzy $A$, a $r(\lambda)$ --- odpowiednim wielomianem interpolacyjnym Lagrange'a--Sylwestra, wtedy:
+    $$ f(A) := r(A) $$
+\end{definition}
+
+Udowodnimy ważną własność funkcji od macierzy:
+\begin{theorem}\label{theorem:similar_matrix_functions}
+    Jeśli macierze $A$ i $B$ są podobne, a macierz $T$ jest macierzą przejścia od $A$ do $B$:
+    $$ B = T^{-1}AT $$
+    wtedy macierze $f(A)$ oraz $f(B)$ również są podobne i macierz $T$ przekształca $f(A)$ w $f(B)$:
+    $$f(B) = T^{-1}f(A)T$$
+\end{theorem}
+\begin{proof}
+Najpierw pokażemy, że dwie macierze podobne mają ten sam wielomian minimalny:
+
+Z $B = T^{-1}AT$ wynika:
+$$
+B^{k} = (T^{-1}AT)^{k} = T^{-1}AT \times T^{-1}AT \times \ldots \times T^{-1}AT = T^{-1}A^{k}T \quad (k \in \N)
+$$
+Wtedy dla dowolnego wielomianu:
+$$
+    g(\lambda) = a_0\lambda^{n} + a_1\lambda^{n - 1} + \ldots + a_{n - 1}\lambda + a_n 
+$$
+zachodzi:
+$$
+g(B) = a_0B^{n} + a_1B^{n - 1} + \ldots + a_{n - 1}B + a_nI
+$$
+Podstawiając $B^{k} = T^{-1}A^{k}T$:
+$$
+g(B) = a_0T^{-1}A^{n}T + a_1T^{-1}A^{n - 1}T + \ldots + a_{n - 1}T^{-1}AT + a_nI
+$$
+Z każdego składnika z lewa możemy wyciągnąć $T^{-1}$ oraz z prawa $T$:
+$$g(B) = T^{-1}(a_0A^{n} + a_1A^{n-1} + \ldots + a_{n - 1}A + a_nI)T$$
+Więc:
+\begin{equation}\label{eq:local_equal_poly}
+    g(B) = T^{-1}g(A)T
+\end{equation}
+Z tego wynika, jeśli $g(\lambda)$ jest wielomianem minimalnym dla $A$ to jest wielomianem minimalnym i dla $B$:
+$$ g(A) = 0 \implies g(B) = T^{-1}g(A)T = 0$$
+Odwrotnie: Z $B = T^{-1}AT$ mamy też $A = TBT^{-1}$, więc analogicznie do \eqref{eq:local_equal_poly}:
+$$g(A) = Tg(B)T^{-1},$$ 
+skąd $g(B) = 0 \implies (A) = 0$.
+
+Udowodniliśmy, że dwie podobne macierze mają ten sam wielomian minimalny, a więc i te same wartości własne do rzędu $m_k - 1$. Z tego mamy, że funkcja $f(\lambda)$ przyjmuje te same wartości na spektrum maicerzy $A$ oraz na spketrum macierzy $B$ (Patrz Definicje~\ref{def:matrix_spectrum} \textit{Spektrum macierzy}). Więc istnieje wielomian interpolacyjny Lagrange'a--Sylwestra, taki że $f(A) = r(A)$ oraz $f(B) = r(B)$. Wtedy na mocy równości \eqref{eq:local_equal_poly} $g(B) = T^{-1}g(A)T$ mamy:
+$$f(B) = T^{-1}f(A)T.$$
+\end{proof}
+
+Teraz udowodnimy kilka twierdzeń, które pozwolą nam rozszerzyć tożsamości znane dla funkcji jednej zmiennej na przypadek, gdy argumentem jest macierz.
+
+\begin{lemma}\label{lemma:zero_spectrum_function}
+Jeśli wielomian $g(\lambda)$ jest zdefiniowany na spektrum macierzy $A$ i wszystkie wartości na spektrum zerują się, tzn. $f(\Lambda_A) = 0$, wtedy wielomian $g(\lambda)$ jest podzielny przez wielomian minimalny $\phi(\lambda)$ macierzy $A$.
+\end{lemma}
+\begin{proof}
+Z załozenia $g(\Lambda_A) = 0$, zapiszmy to jako w Definicji~\ref{def:function_on_spectrum} (\textit{Spektrum macierzy}):
+$$ g(\lambda_k) = g'(\lambda_k) = \ \ldots \ = g^{(m_k - 1)}(\lambda_k) = 0, \quad (k = 1, \ldots, s) $$
+Z tego wynika, że dla każdej wartości własnej $\lambda_k$ zachodzi:
+$$ (\lambda - \lambda_k)^{m_k} \ | \ g(\lambda) $$
+Ponieważ wartości własne są różne, czynniki $(\lambda - \lambda_k)^{m_k}$ są względnie pierwsze, więc:
+$$ (\lambda - \lambda_1)^{m_1}\ldots(\lambda - \lambda_s)^{m_s} \ | \ g(\lambda) $$
+Jak widzimy lewa strona jest właśnie wielomian minimalnym, więc
+$$ \phi(\lambda) \ | \ g(\lambda) $$
+\end{proof}
+
+\begin{theorem}\label{theorem:base_matrix_properties}
+Niech $G(u_1, u_2, \ldots, u_l)$ wielomian od $u_1, u_2, \ldots, u_l$ oraz $f_1(\lambda), f_2(\lambda), \ldots, f_l(\lambda)$ funkcji zdefiniowane na spektrum macierzy $A$. Zdefiniujmy następujący wielomian:
+$$ g(\lambda) := G(f_1(\lambda), f_2(\lambda) \ldots, f_l(\lambda)).$$
+Wtedy jeśli $g(\Lambda_A) = 0$, to $G(f_1(A), f_2(A), \ldots, f_l(A)) = 0$.
+\end{theorem}
+\begin{proof}
+    Oznaczmy przez $r_1(\lambda), r_2(\lambda), \ldots, r_l(\lambda)$ wielomiany Lagrange'a--Sylwestra dla $f_1(\lambda), f_2(\lambda), \ldots, f_l(\lambda)$.
+
+    Niech:
+    $$ h(\lambda) := G(r_1(\lambda), r_2(\lambda) \ldots, r_l(\lambda)) $$
+    Pokażemy, że jeśli $g(\Lambda_A) = 0$ to i $h(\Lambda_A) = 0$. Jak wiemy, z definicji wielomianu Lagrange'a--Sylwestra $f_j(\lambda_k)$ oraz $r_j(\lambda_k)$ mają te same wartości i pochodne do rzędu $m_k - 1$ na spektrum macierzy $A$, gdzie $j = (1, \ldots, l)$. Wielomian $G$ składa się z operacji dodawania oraz mnożenia (potęgowanie jest szczególnym przypadkiem mnożenia), na ogół każdy wielomian składa się z tych działań. Obie operacje zachowują zgodność pochodnych do rzędu $m_k-1$:
+    pochodna sumy jest sumą pochodnych (liniowość), a pochodna iloczynu wyraża się wzorem Leibniza\cite[Rozdział III, \S 4, str. 205]{fichtenholz1999}:
+    $$(ab)^{(n)}=\sum_{i=0}^{n}\binom{n}{i}a^{(i)}b^{(n-i)}.$$
+    Z tego wynika, że $g$ i $h$ mają te same wartości i pochodne do rzędu $m_k-1$ w każdym $\lambda_k$, czyli $h(\Lambda_A) = 0 \implies g(\Lambda_A) = 0$.
+    
+    Z Lematu~\ref{lemma:zero_spectrum_function} wynika, że wielomian $h$ jest podzielne przez wielomian minimalny macierzy $A$, a więc jest wielomianem zerującym (Twierdzenie~\ref{theorem:annihilating_polynomial} \textit{O wielomianie zerującym}):
+    $$ h(A) = G(r_1(A), r_2(A) \ldots, r_l(A)) = G(f_1(A), f_2(A) \ldots, f_l(A)) = 0$$
+    % Note: Możemy podstawić $A$ ponieważ wielomian ma tylko operacji mnożenia i dodawania, co w przypadku podstawania macierzy jest homomorfizmem
+\end{proof}
+
+Korzystając z udowodnionego wyżej twierdzenia, możemy rozszerzyć tożsamości dotyczące funkcji zmiennej na analogiczne tożsamości dla funkcji od macierzy. Dalej przedstawiamy kilka przykładów niezbędnych w dalszych częściach pracy:
+
+(\textit{1}) Niech $A$ macierz nieosobliwa, tzn. $\det{A} \ne 0$ oraz $f(\lambda) = \sqrt{\lambda}$. Niech $\sqrt{\lambda}$ będzie zdefiniowana na obszarze nie zawierającego zero oraz zawierającego wszystkie wartości własne macierzy $A$. Wtedy $\sqrt{\lambda}$ jest zdefiniowana na spekrum macierzy $A$, ponieważ z $\det{A} \ne 0$ wynika, że zero nie jest wartością własną oraz dla każdej wartości własnej $\lambda_k$ funkcja $\sqrt{\lambda}$ różniczkuję się do rzędu $m_k - 1$. Wtedy $f(A) = \sqrt{A}$ ma sens.
+
+Niech $g(\lambda) = \lambda$ oraz
+$$G(u_1, u_2) = u_1^2 - u_2,$$
+wtedy
+$$
+    G(f(\lambda), g(\lambda)) = (\sqrt{\lambda})^2 - \lambda,
+$$
+Zauważmy, że funkcja $g(\lambda)$ jest zdefiniowana na spektrum macierzy $A$, więc na mocy Twierdzenia~\ref{theorem:base_matrix_properties} możemy powyższe równanie przyrównać do zera oraz podstawiając $G(f(A), g(A))$ mamy:
+\begin{equation}\label{eq:sqrt_matrix}
+    (\sqrt{A})^2 = A
+\end{equation}
+
+(\textit{2}) Niech $f(\lambda) = 1/\lambda$ oraz $A$ macierz nieosobliwa. Wtedy funkcja $f(\lambda)$ jest zdefinionowana na spektrum macierzy $A$. 
+
+Niech
+$$G(u_1, u_2) = u_1u_2 - 1,$$
+wtedy
+$$G(\lambda, f(\lambda)) = \lambda f(\lambda)  - 1$$
+Przyrównując $G(\lambda, f(\lambda))$ do zera oraz na mocy Twierdzenia~\ref{theorem:base_matrix_properties} mamy:
+$$ Af(A) - I = 0$$
+$$ Af(A) = I$$
+Ponieważ macierz $A$ jest nieosobliwa, to $A$ jest odwracalna, więc:
+\begin{equation}\label{eq:invert_matrix_function}
+    f(A) = A^{-1}
+\end{equation}
+
+Niech $r(\lambda)$ wielomian Lagrange'a--Sylwestra dla funkcji $f(\lambda) = 1/\lambda$, wtedy macierz $A^{-1}$ możemy przedstawić jako:
+\begin{equation}\label{eq:invert_matrix_to_poly}
+    A^{-1} = r(A)
+\end{equation}
+% Note: Ponieważ f(A) = r(A)

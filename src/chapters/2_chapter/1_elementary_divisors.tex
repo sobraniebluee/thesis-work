@@ -1,0 +1,152 @@
+\chapter{Postać Jordana}
+
+\section{Dzielniki elementarne}
+ 
+W tym podrozdziale wprowadzimy niezbędne pojęcie dla zdefiniowania postaci Jordana macierzy.
+
+\begin{definition}
+    \textit{Macierz wielomianowa} lub $\lambda$\textit{-macierz} będziemy nazywać macierz $A(\lambda)$ wymiarów $m \times n$ elementy której są wielomianami od $\lambda$:
+    $$A(\lambda) = \norm{a_{ik}(\lambda)} \quad (i = 1, \ldots, m; \ k = 1, \ldots, n),$$
+    gdzie $a_{ik}(\lambda) = a_{ik}^{(l)}\lambda^l + a_{ik}^{(l - 1)}\lambda^{l - 1} + \ldots + a_{ik}^{(0)}$ oraz $l$ jest największą potęgą wielomiana $a_{ik}(\lambda)$. Liczby $a_{ik}^{(j)} \in \K$ będziemy traktować jako współczynniki wielomianu $a_{ik}(\lambda)$ przy odpowiednich potęgach, gdzie $j = 0, \ldots l$.
+\end{definition}
+Niech
+$$A_j = \norm{a_{ik}^{(j)}} \quad (i = 1, \ldots, m;\ k = 1, \ldots, n;\ j = 0, \ldots, l)$$
+
+Wówczas macierz $A(\lambda)$ możemy zapisać w następujący sposób:
+$$A(\lambda) = A_0 + \lambda A_1 + \lambda^2 A_2 + \cdots + \lambda^l A_l$$
+Macierz $A(\lambda)$ ma te same elementarne operacje na wierszach oraz kolumnach co i macierz liczbowa.
+
+% \begin{enumerate}[leftmargin=1cm, itemsep=2pt, label=(\arabic*)]
+%     \item Dodanie do dowolnego wiersza innego wiersza pomnożonego przez liczbę.
+%     \item Zamiana miejscami dwóch wierszy.
+%     \item Pomnożenie dowolnego wiersza przez dowlny wielomian $b(\lambda)$.
+% \end{enumerate}
+% Analogicznie definiuje się operacje elementarne na kolumnach macierzy $A(\lambda)$.
+
+% \begin{definition}
+%     Dwie macierze $A$ i $B$ będziemy nazywać \textit{równoważnymi} jeśli istnieją takie macierze $P, Q$, że $\det({P}) \neq 0$ i $\det({Q}) \neq 0$ oraz:
+%     $$B = PAQ$$
+%     Inaczej, dwie macierze $A$ i $B$ są równoważne, jeśli jedną można otrzymać z drugiej za pomocą skończonej ilości elementarnych operacji. W tym przypdaku $P$ odpowiada za elementarne operacje nad wierszami, a $Q$ nad kolumnami.
+% \end{definition}
+
+Niech $A(\lambda)$ macierz wielomianowa z rzędem $n$ (tj. istnieją minory $n$-tego rzędu tożsamościowo nie równe zero). Oznaczmy przez $D_{k}(\lambda)$ największy wspólny dzielnik minorów $k$-tego rzędu macierzy $A(\lambda)$, gdzie $k = 1, \ldots, n$.
+Możemy zauważyć, że w ciągu:
+$$ D_{n}(\lambda), \ D_{n-1}(\lambda), \, \ldots, \ D_{1}(\lambda), \ D_{0}(\lambda)=1 $$
+każdy wielomian $D_{k}(\lambda)$ dzieli się na poprzedni $D_{k-1}(\lambda)$. Wynika to wprost z definicji minora, gdyż rozwińmy dowolny minor $k$-tego stopnia według dowolnego wiersza lub kolumny, będzie to suma:
+$$ \det(M_{k}) = \sum_{i=0}^{k}{(-1)^{i+j}a_{ij}M_{i,j}}$$
+gdzie $j = 1, \ldots, k$, a $M_{i,j}$ minor $k-1$ stopnia, powstały po skreśleniu $i$-tego wiersza i $j$-tej kolumny. Z tego że $D_{k-1}$ jest największym wspólnym dzielnikiem, to dzieli każdy minor $M_{i,j}$, a więc dzieli $\det(M_{k})$. Ponieważ $M_{k}$ był wybrany dowolnie, $D_{k-1}$ musi dzielić $D_{k}$.
+
+\begin{definition}[Wielomiany niezmiennicze]
+Ciąg reszt $i_{n}(\lambda), i_{n-1}(\lambda), \ldots, i_{1}(\lambda)$:
+$$ i_{n}(\lambda) = \frac{D_{n}(\lambda)}{D_{n-1}(\lambda)}, \ i_{n-1}(\lambda) = \frac{D_{n-1}(\lambda)}{D_{n-2}(\lambda)}, \
+\ldots, \ i_{1}(\lambda) = \frac{D_{1}(\lambda)}{D_{0}(\lambda)} = D_{1}(\lambda) $$
+będziemy nazywać \textit{wielomianami niezmienniczymi} macierzy $A(\lambda)$.
+\end{definition}
+Zauważmy, że każdy wielomian $i_{k}(\lambda)$ jest podzielny przez poprzedni $i_{k-1}(\lambda)$, gdzie $k = 1, \ldots, n$.
+
+\begin{definition}[Dzielniki elementarne]
+    Jeśli wielomiany niezmiennicze $i_{1}(\lambda), \ldots, i_{n}(\lambda)$ macierzy $A(\lambda)$ rozłożymy na czynniki nierozkładalne:
+\begin{equation}
+    \begin{gathered}
+    i_{n}(\lambda) = [\varphi_1 (\lambda)]^{c_1}[\varphi_2 (\lambda)]^{c_2}\ldots[\varphi_s (\lambda)]^{c_s} \\
+    i_{n-1}(\lambda) = [\varphi_1 (\lambda)]^{d_1}[\varphi_2 (\lambda)]^{d_2}\ldots[\varphi_s (\lambda)]^{d_s} \\
+    \ldots \\
+    i_{1}(\lambda) = [\varphi_1 (\lambda)]^{l_1}[\varphi_2 (\lambda)]^{l_2}\ldots[\varphi_s (\lambda)]^{l_s} \\
+    (c_k \ge d_k \ge \ldots \ge l_k; \ k = 1, \ldots, s)
+    \end{gathered}
+\end{equation}
+gdzie $\varphi_1(\lambda), \ldots \varphi_s(\lambda)$ wszystkie różne czynniki wielomianów $i_{1}(\lambda), \ldots, i_{n}(\lambda)$ oraz $c_k, d_k, \ldots ,l_k$ są wykładnikami tych czynników.
+Wszystkie takie czynniki $[\varphi_k (\lambda)]^{c_k},[\varphi_k(\lambda)]^{d_k}, \ldots, [\varphi_k (\lambda)]^{l_k}$ dla $k = 1, \ldots, s$, o wykładnikach różnych od zera, będziemy nazywać \textit{dzielnikami elementarnymi}.
+\end{definition}
+
+W dalszej części rozdziału najbardziej nas będą interesować macierze wielomianowe $A(\lambda)$ typu $\lambda I - A$, będącą macierzą charakterystyczną macierzy liczbowej kwadratowej $A$.
+
+\begin{definition}
+Niech $A = \norm{a_{ik}}_{1}^{n}$ macierz kwadratowa wymiarów $n$ z elementami nad ciałem liczb $\K$. Macierz charakterystyczna $\lambda I - A$ macierzy $A$, jest macierzą wielomianową rzędu $n$. Jej wielomiany niezmiennicze:
+$$ i_{n}(\lambda) = \frac{D_{n}(\lambda)}{D_{n-1}(\lambda)}, \ i_{n-1}(\lambda) = \frac{D_{n-1}(\lambda)}{D_{n-2}(\lambda)}, \
+\ldots, \ i_{1}(\lambda) = \frac{D_{1}(\lambda)}{D_{0}(\lambda)} = D_{1}(\lambda) $$
+będziemy nazywać \textit{wielomiany niezmiennicze macierzy} $A$, a odpowiednie dzielniki elementarne, będziemy nazywać
+\textit{dzielniki elementarne macierzy} $A$. 
+\end{definition}
+
+\begin{lemma}\label{lemma:jordan_1}
+    Niech $T$ dowolna macierz nieosobliwa, wtedy wielomiany niezmiennicze są jednakowe dla $\lambda I - A$ oraz $T(\lambda I - A)$. Analogicznie jest dla $(\lambda I - A)T$
+\end{lemma}
+\begin{proof}
+Rozpatrzmy macierz $T(\lambda I - A)$. Wiersze $T(\lambda I - A)$ są kombinacjami liniowymi wierszy macierzy $\lambda I - A$ z współczynnikami które są elementami macierzy $T$. Oznaczymy elementy macierzy $(\lambda I - A)$ jako $r_{ij}$, a elementy $T(\lambda I - A)$ jako $t'_{ij}$. 
+
+Niech $D_k(\lambda)$ największy wspólny dzielnik minorów $k$-tego rzędu macierzy $\lambda I - A$. Minor $k$-tego rzędu macierzy $\lambda I - A$ możemy zapisać następująco:
+$$ M_k = \det\left(\begin{matrix}
+    r_{i_1j_1} & r_{i_1j_2} & \dots  & r_{i_1j_k} \\
+    \vdots & \vdots &  \vdots & \vdots \\
+    r_{i_kj_1} & r_{i_kj_2} & \dots & r_{i_kj_k}
+\end{matrix}\right), \quad 
+\begin{matrix}
+    (i_1 < i_2 < \ldots < i_k) \\
+    (j_1 < j_2 < \ldots < j_k)
+\end{matrix}$$
+Oznaczmy przez $\rho_m = (r_{i_mj_1}, \ r_{i_mj_2}, \ \ldots, \ r_{i_mj_k})$ $m$-ty  wiersz minora $M_k$, wtedy:
+$$M_k = \det\left(\begin{matrix}
+    \rho_1  \\
+    \rho_2  \\
+    \vdots \\
+    \rho_k \\
+\end{matrix}\right)$$
+gdzie $m = 1, \ldots, k$. Niech $t'_m$ jest $m$-tym wierszem dowolnego minora $k$-tego rzędu z macierzy $T(\lambda I - A)$, wtedy:
+$$t'_m = \sum_{s=1}^{n}{t_{ms}r_s},$$
+gdzie $r_s$ jest $s$-tym wierszem macierzy $(\lambda I - A)$.
+Minor $M'_k$ z macierzy $T(\lambda I - A)$ możemy zapisać:
+$$M'_k = \det\left(\begin{matrix}
+    t'_1  \\
+    t'_2  \\
+    \vdots \\
+    t'_k \\
+\end{matrix}\right) = \det\left(\begin{matrix}
+    \sum_{s=1}^{n}{t_{1s}\rho_s} \\
+    \sum_{s=1}^{n}{t_{2s}\rho_s}  \\
+    \vdots \\
+    \sum_{s=1}^{n}{t_{ks}\rho_s} \\
+\end{matrix}\right)$$
+Z aksjomatów wyznacznika możemy przepisać powyższą równość jako:
+$$ M'_k = \sum_{s_1=1}^{n}\sum_{s_2=1}^{n}\ldots \sum_{s_k=1}^{n} (t_{1s_1}t_{2s_2} \ldots t_{ks_k}) \det\left(\begin{matrix}
+    \rho_{s_1}  \\
+    \rho_{s_2}  \\
+    \vdots \\
+    \rho_{s_k} \\
+\end{matrix}\right) $$
+Z tego wynika, że w każdym czynniku sumy $M'_k$ występuje jakiś dowolny minor $M_k$ z macierzy $(\lambda I - A)$, a więc cała suma $M'_k$ jest podzielna przez $D_k(\lambda)$, co oznacza, że $D_k(\lambda)$ jest dzielnikiem minorów $k$-tego rzędu $M'_k$ macierzy $T(\lambda I - A)$.
+
+Niech $D'_k(\lambda)$ będzie największym wspólnym dzielnikiem minorów $M'_k$, wtedy z definicji NWD: 
+\begin{equation}\label{eq:local_jordan_1}
+    D_k(\lambda) \ | \ D'_k(\lambda)
+\end{equation}
+
+(tj. NWD jest podzielny przez mniejsze wspólny dzielnik).
+
+Macierz $T$ jest nieosobliwa, więc istnieje macierz odwrotna $T^{-1}$. Wymnożając macierz $T(\lambda I - A)$ z lewa przez $T^{-1}$ możemy przejść do macierzy $\lambda I - A$. Wtedy dla macierzy $T(\lambda I - A)$ oraz $T^{-1}(T(\lambda I - A)) = \lambda I - A$ zachodzi, że wszystkie minory $M_k$ są podzielne przez $D'_k(\lambda)$, a ponieważ $D_k(\lambda)$ jest największym wspólnym dzielnikiem minorów $M_k$, to:
+\begin{equation}\label{eq:local_jordan_2}
+    D'_k(\lambda) \ | \ D_k(\lambda) 
+\end{equation}
+Z \eqref{eq:local_jordan_1} oraz \eqref{eq:local_jordan_2} wynika, że $D_k(\lambda)$ oraz $D'_k(\lambda)$ muszą różnić się o stałą: 
+$$D_k(\lambda) = \alpha \times D'_k(\lambda), \quad \alpha \in \K \setminus \{0\}$$
+Jeśli sprowadzimy współczynnik przy najwyższej potędze do jedynki, to oba wielomiany będą sobie równe. Z tego wynika że macierze $\lambda I - A$ oraz  $T(\lambda I - A)$ mają ten sam największy wspólny dzielnik $D_k(\lambda)$ minorów $k$-tego rzędu, a więc mają jednakowe wielomiany niezmiennicze. Dla przypadku $(\lambda I - A)T$ dowód jest analogiczny.
+\end{proof}
+
+\begin{lemma}\label{lemma:same_invariant_poly}
+    Dwie macierze podobne $A = \norm{a_{ik}}_{1}^{n}$ i $B = \norm{b_{ik}}_{1}^{n}$:
+    $$B = T^{-1}AT,$$
+    gdzie $T$ jest macierzą nieosobliwą, mają jednakowe wielomiany niezmiennicze, a więc również jednakowe dzielniki elementarne.
+\end{lemma}
+\begin{proof}
+Macierze $A$ odpowiada macierz charakterystyczna $\lambda I - A$, a macierze $B$ odpowiada $\lambda I - B$.
+Na mocu poprzedniego Lematu~\ref{lemma:jordan_1} macierz $\lambda I - A$ oraz $(\lambda I - A)T$ mają jednakowe wielomiany niezmiennicze. Na mocy tegoż Lematu~\ref{lemma:jordan_1} wielomiany niezmiennicze są jednakowe dla macierz $T^{-1}(\lambda I - A)$ oraz $T^{-1}(\lambda I - A)T$. Macierz $T^{-1}(\lambda I - A)T$ możemy zapisać jako:
+$$ T^{-1}(\lambda I - A)T = T^{-1}(\lambda I)T - T^{-1}AT = \lambda I - B.$$
+A więc wielomiany niezmiennicze są jednakowe dla macierzy podobnych, lub inaczej dla macierzy podobnych wielomiany niezmiennicze pozostają niezmiennicze, skąd i pochodzi nazwa. 
+\end{proof}
+
+\begin{theorem}[Gantmacher]\label{theorem:gantmacher_similarity}
+    Dwie macierze kwadratowe $A$ i $B$ są podobne wtedy i tylko wtedy, gdy macierze charakterystyczne $\lambda I - A$ oraz $\lambda I - B$ mają jednakowe wielomiany niezmiennicze, lub, równoważnie, jednakowe dzielniki elementarne.
+\end{theorem}
+\begin{proof}
+    Implikacja $(\Rightarrow)$ została udowodniona w Lemacie~\ref{lemma:same_invariant_poly}. Implikacja $(\Leftarrow)$ wynika z teorii równoważności macierzy wielomianowych, dowód znajduje się w \cite[Rozdział VI]{gantmacher2000} (Twierdzenia 6--7, str. 145).
+\end{proof}

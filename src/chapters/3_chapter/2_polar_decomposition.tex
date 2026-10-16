@@ -1,0 +1,142 @@
+\section{Rozkład biegunowy macierzy zespolonej}
+
+Rozkładem biegunowym będziemy nazywać przedstawienie macierzy w postaci iloczynu macierzy symetrycznej i macierzy ortogonalnej, gdzie macierz ortogonalna reprezentuje obrót, natomiast macierz symetryczna reprezentuje skalowanie. 
+
+Intuicyjnie wynika to z faktu, że w przestrzeni euklidesowej podstawowymi operacjami geometrycznymi zachowującymi odpowiednią strukturę są obroty oraz zmiany skali w poszczególnych kierunkach.
+Rozkład biegunowy pozwala zatem przedstawić działanie operatora jako złożenie tych dwóch rodzajów operacji. W przestrzeni unitarnej nie możemy już wprost korzystać z tej geometrycznej intuicji, ale idea oraz konstrukcja algebraiczna pozostają aktualne.
+
+Dalej przedstawimy tę intuicję w sposób ścisły oraz udowodnimy podstawowe twierdzenia dotyczące takiego rozkładu.
+
+\begin{theorem}[Rozkład biegunowy]
+Niech $A$ będzie nieosobliwą macierzą zespoloną wymiarów $n \times n$, wtedy:
+\begin{equation}\label{eq:local_polar_decomposition_left}
+    A = SO
+\end{equation}
+oraz
+\begin{equation}\label{eq:local_polar_decomposition_right}
+    A = O_1S_1,
+\end{equation}
+gdzie $S$ i $S_1$ są zespolonymi macierzami symetrycznymi, a $O$ i $O_1$ zespolonymi macierzami ortogonalnymi. Wówczas:
+$$S = \sqrt{AA^T} = f(AA^T), \quad S_1 = \sqrt{A^TA} = f_1(A^TA),$$
+gdzie $f(\lambda)$ i $f_1(\lambda)$ są pewnymi wielomianami Lagrange'a--Sylwestra zmiennej $\lambda$.
+
+Macierze $S$ i $O$ (odpowiednio $S_1$ i $O_1$) są przemienne między sobą w tym przypadku, gdy macierze $A$ i $A^T$ są przemienne między sobą.   
+\end{theorem}
+\begin{proof}
+    Załóżmy, że wzrór \eqref{eq:local_polar_decomposition_left} jest prawdziwy:
+    $$A = SO, \quad A^T = O^TS = O^{-1}S$$
+    Z tego wynika:
+    $$ AA^T = SOO^{-1}S = S^2 $$
+    \begin{equation}\label{eq:local_S_matrix}
+        S^2 = AA^T
+    \end{equation}
+    W inną stronę:
+
+    Macierz $AA^T$ jest nieosobliwa, ponieważ z założenia $|A| \ne 0$, więc $|AA^T| = |A||A| = |A|^2 \ne 0$. Z tego wynika, że zero nie jest wartością własną macierzy $AA^T$. Wtedy funkcja $\sqrt{\lambda}$ jest zdefiniowana na spektrum macierzy $AA^T$, ponieważ $\sqrt{\lambda}$ będzie istanieć dla każdej wartości własnej $AA^T$ wraz z pochodnymi do $m - 1$ rzędu (Definicja~\ref{def:function_on_spectrum}). 
+    
+    Jak pokazaliśmy w poprzednim podrozdziale, dla każdej funkcji zdefiniowanej na spektrum macierzy, można znaleźć interpolacyjny wielomian Lagrange'a--Sylwestra, więc dla $\sqrt{\lambda}$ też istnieje, oznaczmy go jako $f(\lambda)$:
+    $$
+        \sqrt{AA^T} = f(AA^T)
+    $$
+    Macierz $AA^T$ jest symetryczna: $AA^T = (AA^T)^T = AA^T$.
+    Zauważmy, że $(AA^T)^k$ też jest macierzą symetryczną\footnote{This is a footnote.}, gdzie $k \in \N$.
+
+    Każdy wielomian, w tym przypadku wielomian Lagrange'a--Sylwestra, można zapisać w postaci:
+    $$ f(\lambda) = a_0\lambda^n + a_1\lambda^{n - 1} + \ \ldots \ + a_{n - 1}\lambda + a_{n} $$
+    Podstawiąc macierz symetryczną $AA^T$ mamy:
+    \begin{equation}\label{eq:function_AA}
+        f(AA^T) = a_0(AA^T)^n + a_1(AA^T)^{n - 1} + \ \ldots  \ + a_{n - 1}(AA^T) + a_{n}I 
+    \end{equation}
+    Jak widzimy każdy składnik jest macierzą symetryczną, a suma macierzy symetrycznych jest macierzą symetryczną.\footnote{Niech $A, B$ --- symetryczne, wtedy $A^T + B^T = (A + B)^T$. Patrz Twierdzenie~\ref{theorem:properties_of_transposed_operator}, punkt (2)}
+    Z tego wynika, że $f(AA^T)$ jest macierzą symetryczną,  więc $\sqrt{AA^T}$ też, zapiszmy to jako:
+    $$S = \sqrt{AA^T}$$
+    Jak wiemy z \eqref{eq:sqrt_matrix}:
+    $$S^2 = AA^T$$
+    Otrzymaliśmy ten sam wynik co i w \eqref{eq:local_S_matrix}. Macierz $S$ jest nieosobliwa ($|S|^2 = |AA^T| = |A|^2 \ne 0$) więc macierz odwrotna istnieje.
+    Teraz zdefiniujmy macierz $O$, korzystając z równości \eqref{eq:local_polar_decomposition_left}:
+    $$O := S^{-1}A$$
+    Łatwo możemy sprawdzić, że macierz $A$ jest ortogonalna:
+    $$ OO^T = S^{-1}AA^T(S^{-1})^T = S^{-1}AA^TS^{-1} = S^{-1}S^2S^{-1} = I $$
+    oraz 
+    $$O^TO = A^T(S^{-1})^TS^{-1}A = A^TS^{-2}A = A^T(AA^T)^{-1}A = A^T(A^T)^{-1}A^{-1}A = I,$$
+    wtedy
+    $$OO^T = O^TO = I$$
+    Więc rozłożenie $A = SO$ jest udowodnione. Przypadek $A = O_1S_1$ dowodzi się analogicznie.
+
+    Jeśli w rozkładzie $A = SO$ macierzy $S$ i $O$ są przemienne to wtedy macierzy $A$ i $A^T$ też przemienne:
+    $$ A = SO, \quad A^T = O^{-1}S, $$
+    wtedy
+    $$ AA^T = SOO^{-1}S = S^2, $$ 
+    $$ A^TA = O^{-1}SSO = O^{-1}SOS = O^{-1}SOS = O^{-1}OS^2 = S^2,$$
+    więc
+    $$AA^T = A^TA = S^2.$$
+    
+    W inną stronę, jeśli macierze $A$ i $A^T$ są przemienne to i składniki $S$ i $O$ też:
+    $$ AA^T = A^TA \implies S^2 = O^{-1}S^2O $$
+    Mnożąć ostatnią równość przez $O$ mamy:
+    $$ OS^2 = S^2O $$
+    Z czego wynika, że macierz $O$ jest przemienna z $S^2 = AA^T$.
+    Wtedy dla macierzy $S = f(AA^T)$:
+    $$OS = O(f(AA^T)),$$
+    Zapiszmy $f(AA^T)$ jako wielomian \eqref{eq:function_AA}:
+    $$OS = O(a_0(AA^T)^n + a_1(AA^T)^{n - 1} + \ \ldots  \ + a_{n - 1}(AA^T) + a_{n}I),$$
+    Wtedy z własności ($O(AA^T)^k = (AA^T)^kO$, gdzie $k \in N$)\footnote{Z indukcji matematycznej, dla $k \ge 1$: $AB = BA \implies AB^k = B^kA$. Istotnie, dla ($k=1$) teza wynika z założenia, a krok indukcyjny zachodzi, ponieważ: $AB^{(k+1)} = ABB^k = BAB^k = BB^kA = B^{(k+1)}A$.} mamy:
+    \[
+    \begin{aligned}
+    OS = (a_0O(AA^T)^n + a_1O(AA^T)^{n - 1} + \ \ldots  \ + a_{n - 1}O(AA^T) + a_{n}O) = \\ (a_0(AA^T)^nO + a_1(AA^T)^{n - 1}O + \ \ldots  \ + a_{n - 1}(AA^T)O + a_{n}O) = \\ (a_0(AA^T)^n + a_1(AA^T)^{n - 1} + \ \ldots  \ + a_{n - 1}(AA^T) + a_{n}I)O = SO,
+    \end{aligned}
+    \]
+    więc macierzy $S$ i $O$ są przemienne. Twierdzenie udowodnione.
+
+% Macierz S^n jest symetryczna, z indukcji: S^2 = (S^2)^T; S^2 = (S^TS^T)^T = S^2;
+% Dla S^3 = (S^3)^T; S^3 = (SS^2)^T = (S^2)^T S^T = S^2 S = S^3
+\end{proof}
+
+Teraz, wykorzystując rozkład biegunowy, udowodnimy następujące ważne twierdzenie, które jest niezbędne do konstrukcji postaci normalnych macierzy.
+
+\begin{theorem}
+    Jeśli dwie symetryczne, antysymetryczne lub ortogonalne macierze są podobne:
+    \begin{equation}\label{eq:similarity_assumption}
+        B = T^{-1}AT
+    \end{equation}
+    to te dwie macierze są ortogonalnie podobne, tzn. istnieje taka macierz $O$, że:
+    $$B = O^{-1}AO$$  
+\end{theorem}
+\begin{proof}
+    Z założenia \eqref{eq:similarity_assumption} oraz Twierdzenia \ref{theorem:similar_matrix_functions}, wynika, że dla dowolnej funkcji $h(\lambda)$, zdefininowanej na spektrum macierzy $A$ i $B$, zachodzi:
+    $$f(B) = T^{-1}f(A)T$$
+    Dobierzmy $h(\lambda)$ w taki sposób, żeby:
+    $$h(A) = A^T, \quad h(B) = B^T.$$
+    Wtedy w przypadaku macierzy symetrycznej to jest $h(\lambda) = \lambda$ oraz antysymetrycznej $h(\lambda) = -\lambda$. Zauważmy, że każda z tych funkcji jest też wielomianem.
+
+    Jeśli $A$ i $B$ macierze ortogonalne, wtedy macierz transponowana jest i macierzą odwrotną, a jak wiemy z \eqref{eq:invert_matrix_function} funkcja $h(\lambda) = 1/\lambda$ ma własność taką, że:
+    $$h(A) = A^{T}, \quad h(B) = B^{T}$$
+    Z \eqref{eq:invert_matrix_to_poly} mamy:
+    $$ A^{T} = q(A), \quad B^{T} = q(B),$$
+    gdzie $q(\lambda)$ jest wielomianem Lagrange'a--Sylwestra dla funkcji $h(\lambda) = 1/\lambda$.
+
+    Z powyższego możemy stwierdzić następujące: \\
+    Istnieje taki wielomian $q(\lambda)$, że:
+    $$ A^{T} = q(A), \quad B^{T} = q(B),$$
+    gdzie w przypadku macierzy symetrycznej, ten wielomian jest równy tożsamościowo $\lambda$, a w przypadku macierzy antysymetrycznej, ten wielomian jest równy tożsamościowo $-\lambda$. W przypadku macierzy ortogonalnej $q(\lambda)$ jest wielomianem Lagrange'a--Sylwestra dla funkcji $1/\lambda$ zdefiniowanej na spektrum macierzy $A$ i $B$.
+
+    Wtedy z \eqref{eq:similarity_assumption} oraz Twierdzenia \ref{theorem:similar_matrix_functions} mamy (wielomian możemy traktować jako funkcje):
+    $$ q(B) = T^{-1}q(A)T $$
+    lub inaczej:
+    $$ B^T = T^{-1}A^TT $$
+    Po transponowaniu obu stron:
+    $$ B = T^TA(T^{-1})^T $$
+    Podstawiając zamiast $B = T^{-1}AT$ mamy:
+    $$ T^{-1}AT = T^TA(T^{-1})^T $$
+    Mnożąć z lewa przez $T$ oraz z prawa przez $T^T$ mamy:
+    $$ ATT^T = TT^TA $$
+    Jak widzimy macierz $TT^T$ jest przemienna z $A$. Stosując rozkład biegunowy do macierzy $T$ mamy:
+    $$ T = SO, \quad (S = S^T = f(TT^T), \ O = O^{-1}) $$
+    Ponieważ macierz $TT^T$ jest przemienna z $A$, to macierz $S =f(TT^T)$ też jest przemienna z $A$.\footnote{Patrz ostatnią część dowodu Twierdzenia o rozkładzie biegunowym} Podstawiając do \eqref{eq:similarity_assumption} zamiast macierzy $T$ iloczyn $SO$ mamy:
+    $$ B = (SO)^{-1}ASO = O^{-1}S^{-1}ASO = O^{-1}S^{-1}SAO = O^{-1}AO,$$
+    więc ostatecznie:
+    $$B = O^{-1}AO.$$    
+\end{proof}
+Teraz mamy wszystkie potrzebne twierdzenia i możemy przjeść do budowy form normalnych.
+
+
