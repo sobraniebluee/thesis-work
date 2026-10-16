@@ -27,3 +27,19 @@ main.pdf
 .DS_Store
 
 library/
+
+.venv/
+
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+plot.pdf
